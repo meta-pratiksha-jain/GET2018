@@ -1,7 +1,17 @@
+package shoppingCart;
+
 import java.util.*;
 public class FixedProductPromotion implements Promotion
 {
 	double minimumPrice, discount;
+	List<PromotionEnum> listOfFixedOrderPromotion;
+	public FixedProductPromotion()
+	{
+		listOfFixedOrderPromotion=new ArrayList<PromotionEnum>();
+		listOfFixedOrderPromotion.add(PromotionEnum.FLAT10);
+		minimumPrice=200.0;
+		discount=10.0;                   //discount is in percentage
+	}
 	@Override
 	public double getMinimumPrice()
 	{
@@ -24,28 +34,25 @@ public class FixedProductPromotion implements Promotion
 		
 	}
          /*
-	 * Checks whether promotion is applicable on promocode enterd by user
-	 * @param code is the promotion code that should be checked
+	 * Checks whether promotion is applicable or not
 	 * @return returns true if promotion is applicable otherwise false
 	 */
 	@Override
-	public boolean isPromotionApplicable(String code)
+	public boolean isPromotionApplicable()
 	{
 		Date currentDate=new Date();
 		boolean isApply=false;
-		for(PromotionEnum promo:PromotionEnum.values())
+		for(PromotionEnum promotion:listOfFixedOrderPromotion)
 		{
-			if(promo.getCode().equals(code))
-			{
-				if(currentDate.after(promo.getStartDate().getTime()) && currentDate.before(promo.getEndDate().getTime()))
+				if(currentDate.after(promotion.getStartDate().getTime()) && currentDate.before(promotion.getEndDate().getTime()))
 				{
 					isApply=true;
+					break;
 				}
 				else
 				{
 					isApply=false;
 				}
-			}
 		}
 		return isApply;
 	}

@@ -1,3 +1,5 @@
+package shoppingCart;
+
 import java.util.*;
 public enum PromotionEnum
 {

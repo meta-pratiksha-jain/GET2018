@@ -1,3 +1,5 @@
+package shoppingCart;
+
 public interface Promotion
 {
     public double getMinimumPrice();
@@ -8,5 +10,5 @@ public interface Promotion
 	
     public void setFixedDiscount(double discount);
 	
-    public boolean isPromotionApplicable(String code); 
+    public boolean isPromotionApplicable(); 
 }
