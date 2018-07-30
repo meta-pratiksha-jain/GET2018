@@ -87,9 +87,17 @@ public class Zone {
 		return animal;
 	}
 	
-	public void removeAnimal(Animal animal)//not completed
+	public void removeAnimal(Animal animal)
 	{
-		String animalType=animal.type
+		String animalType=animal.getType();
+		for(Cage cage:listOfCage)
+		{
+		    String cageType=cage.getTypeOfAnimal();
+		    if(animalType.equals(cageType));
+		    {
+		        cage.removeAnimal(animal);
+		    }
+		}
 	}
 	
 	public int getTotalCapacity()

@@ -12,9 +12,10 @@ public class Cage {
 	{
 		listOfAnimals=new ArrayList<Animal>();
 		this.cageId=cageId;
+		this.category=category;
 		this.typeOfAnimal=typeOfAnimal;
 		this.capacityOfAnimals=capacityOfAnimals;
-		this.category=category;
+		
 		numberOfAnimals=0;
 	}
 
@@ -101,12 +102,13 @@ public class Cage {
 		return animal;
 	}
 	
-	public void removeAnimal(String name)
+	public void removeAnimal(Animal removedAnimal)
 	{
+	    String removedAnimalName=removedAnimal.getName();
 		for(Animal animal:listOfAnimals)
 		{
 			String animalName=animal.getName();
-			if(name.equals(animalName))
+			if(removedAnimalName.equals(animalName))
 			{
 				listOfAnimals.remove(animal);
 				numberOfAnimals--;

@@ -2,40 +2,37 @@ import java.util.*;
 public class ZooManagement {
 	public static void main(String[] args)
 	{
-		Lion lion=new Lion("lion1",12,60.0);
-		String info=lion.getInfo();
-		System.out.println(info);
-		
-		Elephant elephant=new Elephant("elephant1", 10, 150.0);
-		info=elephant.getInfo();
-		System.out.println(info);
-		
-		Crocodile crocodile=new Crocodile("crocodile1", 14, 100.0);
-		info=crocodile.getInfo();
-		System.out.println(info);
-		
-		Snake snake=new Snake("snake1", 29, 38.0);
-		info=snake.getInfo();
-		System.out.println(info);
-		
-		Peacock peacock=new Peacock("peacock1", 24, 29.0);
-		info=peacock.getInfo();
-		System.out.println(info);
-		
-		Pigeon pigeon=new Pigeon("pigeon1", 5, 19);
-		info=pigeon.getInfo();
-		System.out.println(info);
-		
-		Cage cage=new Cage(1, "mammal", "lion", 2);
-		System.out.println(cage.getCapacityOfAnimals());
-		System.out.println(cage.getSpareCapacity());
-		
-		Zone zone=new Zone(1, "mammal",4);
-		zone.addCage(cage);
-		System.out.println(zone.getNumberOfCages());
-		System.out.println(zone.getCapacityOfCages());
-		System.out.println(zone.getTotalCapacity());
-		System.out.println(zone.getSpareCapacity());
+		Zoo zoo=new Zoo();
+		zoo.addZone("mammal", 10);
+		zoo.addZone("reptile", 5);
+		zoo.addZone("bird",20);
+		List<Zone> listOfZone=zoo.getListOfZone();
+		for(Zone zone:listOfZone)
+		{
+		    System.out.println(zone.getZoneId());
+		}
+		zoo.addCage(1, "lion", 1, "mammal");
+		zoo.addCage(1, "lion", 1, "mammal");
+		zoo.addCage(1, "elephant", 5, "mammal");
+		zoo.addCage(1, "elephant", 5, "mammal");
+		zoo.addCage(2, "crocodile", 2, "reptile");
+		zoo.addCage(2, "crocodile", 2, "reptile");
+		zoo.addCage(2, "crocodile", 2, "reptile");
+		zoo.addCage(2, "snake", 5, "reptile");
+		zoo.addCage(2, "snake", 5, "reptile");
+		List<Cage> listOfCage=zoo.getListOfCage();
+        for(Cage cage:listOfCage)
+        {
+            System.out.println(cage.getCageId());
+        }
+        zoo.addAnimal("mammal", "lion", "lion1", 20, 80);
+        List<Animal> listOfAnimals=zoo.getListOfAnimal();
+        for(Animal animal:listOfAnimals)
+        {
+            System.out.println(animal.getInfo());
+        }
+        zoo.removeAnimal("lion1");
+        System.out.println(listOfAnimals.size());
 	}
 
 }

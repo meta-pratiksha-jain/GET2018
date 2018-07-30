@@ -69,7 +69,7 @@ public class Zoo {
 			throw new AssertionError("Zone with zone id "+zoneId+" doesn't exist in zoo");
 		}
 		Cage cageInstance=new Cage(numberOfCages+1,category,typeOfAnimal,capacityOfAnimal);
-		Zone zone=listOfZone.get(zoneId);
+		Zone zone=listOfZone.get(zoneId-1);
 		zone.addCage(cageInstance);
 		listOfCage.add(cageInstance);
 		numberOfCages++;
@@ -88,24 +88,34 @@ public class Zoo {
 				{
 					listOfAnimal.add(animal);
 					isAdded=true;
-					break;
+					return isAdded;
 				}
 			}
 		}
 		return isAdded;
 	}
 	
-	public void removeAnimal(String name)//not completed
+	public void removeAnimal(String name)
 	{
-		Animal removingAnimal=null;
+		Animal removedAnimal=null;
 		for(Animal animal:listOfAnimal)
 		{
 			String animalName=animal.getName();
 			if(name.equals(animalName))
 			{
 				listOfAnimal.remove(animal);
-				
+				removedAnimal=animal;
+				break;
 			}
+		}
+		for(Zone zone:listOfZone)
+		{
+		    String zoneCategory=zone.getCategory();
+		    String animalCategory=removedAnimal.getCategory();
+		    if(zoneCategory.equals(animalCategory))
+		    {
+		        zone.removeAnimal(removedAnimal);
+		    }
 		}
 	}
 	
