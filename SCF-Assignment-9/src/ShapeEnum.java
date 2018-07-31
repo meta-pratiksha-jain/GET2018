@@ -1,0 +1,5 @@
+
+public enum ShapeEnum {
+    SQUARE,RECTANGLE,CIRCLE,TRIANGLE,REGULARPOLYGON;
+
+}
