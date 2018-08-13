@@ -29,7 +29,7 @@ public class DictionaryUsingBST implements IDictionary {
             {
                 int key=Integer.parseInt(jsonKey.toString());
                 String value=jsonObject.get(jsonKey).toString();
-                addToDictionary(key, value);
+                addNode(key, value);
             }
         }
         catch(FileNotFoundException exception)
@@ -47,13 +47,13 @@ public class DictionaryUsingBST implements IDictionary {
     }
 
     @Override
-    public void addToDictionary(int key, String value) {
-        root= addHelper(root,key,value);
+    public void addNode(int key, String value) {
+        root= addNode(root,key,value);
     }
 
     @Override
-    public void deleteFromDictionary(int key) {
-        root=deleteHelper(root,key);
+    public void deleteNode(int key) {
+        root=deleteNode(root,key);
     }
 
     @Override
@@ -69,13 +69,13 @@ public class DictionaryUsingBST implements IDictionary {
 
     @Override
     public List<Node> getSortedList() {
-        sortHelper(root);
+        sort(root);
         return sortedList;
     }
 
     @Override
     public List<Node> getSortedListInRangeOfKey(int key1, int key2) {
-        sortHelper(root);
+        sort(root);
         List<Node> sortedListForRangeOfKeys=new ArrayList<Node>();
         if(key2<key1)
         {
@@ -101,7 +101,7 @@ public class DictionaryUsingBST implements IDictionary {
      * @param value
      * @return returns the node that is added.
      */
-    private Node addHelper(Node node,int key,String value)
+    private Node addNode(Node node,int key,String value)
     {
         if(node==null)
         {
@@ -111,12 +111,12 @@ public class DictionaryUsingBST implements IDictionary {
         int keyOfNode=node.getKey();
         if(keyOfNode>key)
         {
-            Node leftChild=addHelper(node.getLeftChild(),key,value);
+            Node leftChild=addNode(node.getLeftChild(),key,value);
             node.setLeftChild(leftChild);
         }
         else if(keyOfNode<key)
         {
-            Node rightChild=addHelper(node.getRightChild(),key,value);
+            Node rightChild=addNode(node.getRightChild(),key,value);
             node.setRightChild(rightChild);
         }
         return node;
@@ -156,13 +156,13 @@ public class DictionaryUsingBST implements IDictionary {
      * @param node contains root of subtree
      * @return returns sorted list.
      */
-    private void sortHelper(Node node)
+    private void sort(Node node)
     {
         if(node!=null)
         {
-            sortHelper(node.getLeftChild());
+            sort(node.getLeftChild());
             sortedList.add(node);
-            sortHelper(node.getRightChild());
+            sort(node.getRightChild());
         }
     }
     
@@ -172,7 +172,7 @@ public class DictionaryUsingBST implements IDictionary {
      * @param key
      * @return returns deleted node.
      */
-    private Node deleteHelper(Node node,int key)
+    private Node deleteNode(Node node,int key)
     {
         if(node==null)
         {
@@ -181,12 +181,12 @@ public class DictionaryUsingBST implements IDictionary {
         int keyOfNode=node.getKey();
         if(keyOfNode>key)
         {
-            Node leftChild=deleteHelper(node.getLeftChild(),key);
+            Node leftChild=deleteNode(node.getLeftChild(),key);
             node.setLeftChild(leftChild);
         }
         else if(keyOfNode<key)
         {
-            Node rightChild=deleteHelper(node.getRightChild(),key);
+            Node rightChild=deleteNode(node.getRightChild(),key);
             node.setRightChild(rightChild);
         }
         else

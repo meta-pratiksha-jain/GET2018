@@ -13,7 +13,7 @@ public class DictionaryUsingBSTTest {
     @Test
     public void testAddToDictionary() {
         dictionary=new DictionaryUsingBST();
-        dictionary.addToDictionary(8, "sam");
+        dictionary.addNode(8, "sam");
         List<Node> sortedList=dictionary.getSortedList();
         int[] expectedList={1,2,4,7,8,10};
         for(int i=0;i<expectedList.length;i++)
@@ -27,7 +27,7 @@ public class DictionaryUsingBSTTest {
     @Test
     public void testDeleteFromDictionary() {
         dictionary=new DictionaryUsingBST();
-        dictionary.deleteFromDictionary(7);
+        dictionary.deleteNode(7);
         List<Node> sortedList=dictionary.getSortedList();
         int[] expectedList={1,2,4,10};
         for(int i=0;i<expectedList.length;i++)

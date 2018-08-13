@@ -14,14 +14,14 @@ public interface IDictionary {
      * @param value
      * @return returns node that is added in dictionary.
      */
-    public void addToDictionary(int key, String value);
+    public void addNode(int key, String value);
     
     /**
      * deletes a node from dictionary if it exists in dictionary.
      * @param key
      * @return returns true if node is deleted otherwise false.
      */
-    public void deleteFromDictionary(int key);
+    public void deleteNode(int key);
     
     /**
      * find the value corresponding to key in dictionary.
