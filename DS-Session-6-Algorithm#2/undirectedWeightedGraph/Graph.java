@@ -192,15 +192,16 @@ public class Graph implements IGraph {
             shortestPath.add(currentNode);
             for(Edge edge:listOfTotalEdges)
             {
-                if(currentNode==source && !isVisited[edge.getSecondNode()-1])
+                if(currentNode==edge.getFirstNode() && !isVisited[edge.getSecondNode()-1])
                 {
                     mapOfDistanceFromSource.put(edge.getSecondNode(), edge.getWeight());
                 }
-                else if(currentNode==destination && !isVisited[edge.getFirstNode()-1])
+                else if(currentNode==edge.getSecondNode && !isVisited[edge.getFirstNode()-1])
                 {
                     mapOfDistanceFromSource.put(edge.getFirstNode(), edge.getWeight());
                 }
             }
+            return shortestPath
         }**/
     }
 
