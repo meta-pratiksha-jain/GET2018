@@ -164,7 +164,7 @@ public class Graph implements IGraph {
 
     @Override
     public List<Integer> getShortestPath(int source, int destination) {
-        List<Integer> shortestPath=new ArrayList<Integer>();
+        /**List<Integer> shortestPath=new ArrayList<Integer>();
         boolean[] isVisited=new boolean[numberOfVertices];
         for(int i=0;i<numberOfVertices;i++)
         {
@@ -201,7 +201,7 @@ public class Graph implements IGraph {
                     mapOfDistanceFromSource.put(edge.getFirstNode(), edge.getWeight());
                 }
             }
-        }
+        }**/
     }
 
 }
