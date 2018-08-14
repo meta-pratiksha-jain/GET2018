@@ -33,37 +33,48 @@ public class GraphTest {
     
     //test cases for getListOfReachableNode()
     @Test
-    public void testgetListShouldReturnListOfReachableNodeWhenAllNodesAreReachable() {
+    public void testgetReachableNodeShouldReturnListOfReachableNodeWhenAllNodesAreReachable() {
         graph=new Graph(5);
         graph.addEdge(1, 2, 1);
         graph.addEdge(1, 3, 4);
         graph.addEdge(2, 4, 1);
         graph.addEdge(2, 5, 5);
         graph.addEdge(3, 5, 2);
-        List<Integer> actualOutput=graph.getListOfReachableNode(1);
+        List<Integer> actualOutput=graph.getReachableNodes(1);
         Collections.sort(actualOutput);
         int[] expectedOutput= {1,2,3,4,5};
-        for(int i=0;i<actualOutput.size();i++)
+        for(int i=0;i<expectedOutput.length;i++)
         {
             assertEquals(expectedOutput[i],(int)actualOutput.get(i));
         }
     }
     
     @Test
-    public void testgetListShouldReturnListOfReachableNodeWhenSomeNodesAreReachable() {
+    public void testgetReachableNodeShouldReturnListOfReachableNodeWhenSomeNodesAreReachable() {
         graph=new Graph(5);
         graph.addEdge(1, 2, 1);
         graph.addEdge(2, 4, 1);
         graph.addEdge(2, 5, 5);
-        List<Integer> actualOutput=graph.getListOfReachableNode(1);
+        List<Integer> actualOutput=graph.getReachableNodes(1);
         Collections.sort(actualOutput);
         int[] expectedOutput= {1,2,4,5};
-        for(int i=0;i<actualOutput.size();i++)
+        for(int i=0;i<expectedOutput.length;i++)
         {
             assertEquals(expectedOutput[i],(int)actualOutput.get(i));
         }
     }
     
+    @Test(expected=AssertionError.class)
+    public void testgetReachableNodeShouldThrowExceptionWhenNodeNotExist() {
+        graph=new Graph(5);
+        graph.addEdge(1, 2, 1);
+        graph.addEdge(2, 4, 1);
+        graph.addEdge(2, 5, 5);
+        graph.getReachableNodes(6);
+        
+    }
+    
+    //test cases for getMinimumSpanningTree()
     @Test
     public void testgetMSTShouldReturnListOfEdgesInMST() {
         graph=new Graph(5);
@@ -79,6 +90,7 @@ public class GraphTest {
         }
     }
     
+    //test cases for getShortestPath()
     @Test
     public void testgetShortestPathShouldReturnShortestPath() {
         graph=new Graph(5);
@@ -87,12 +99,22 @@ public class GraphTest {
         graph.addEdge(2, 4, 1);
         graph.addEdge(2, 5, 5);
         graph.addEdge(3, 5, 2);
-        List<Integer> actualOutput=graph.getShortestPath(2, 3);
-        int[] expectedOutput= {2,1,3};
-        for(int i=0;i<actualOutput.size();i++)
+        List<Integer> actualOutput=graph.getShortestPath(1, 4);
+        int[] expectedOutput= {1,2,4};
+        for(int i=0;i<expectedOutput.length;i++)
         {
             assertEquals(expectedOutput[i],(int)actualOutput.get(i));
         }
+    }
+    
+    @Test(expected=AssertionError.class)
+    public void testgetShortestPathShouldThrowExceptionWhenNodeNotExist() {
+        graph=new Graph(5);
+        graph.addEdge(1, 2, 1);
+        graph.addEdge(2, 4, 1);
+        graph.addEdge(2, 5, 5);
+        graph.getReachableNodes(6);
+        
     }
 
 }

@@ -15,7 +15,7 @@ public interface IGraph {
      * @param vertex
      * @return returns list of reacheble node from vertex
      */
-    public List<Integer> getListOfReachableNode(int vertex);
+    public List<Integer> getReachableNodes(int vertex);
     
     /**
      * Gives list Of edges of minimum spanning tree of a graph

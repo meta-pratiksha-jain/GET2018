@@ -10,7 +10,6 @@ public class Graph implements IGraph {
     public int numberOfVertices;
     private List<Edge>[] arrayOfListOfEdges;
     private List<Edge> listOfEdgesInMST;
-    private List<Edge> listOfTotalEdges;
     
     /**
      * constructor
@@ -25,7 +24,6 @@ public class Graph implements IGraph {
             arrayOfListOfEdges[i]=new LinkedList<Edge>();
         }
         listOfEdgesInMST=new ArrayList<>();
-        listOfTotalEdges=new ArrayList<>();
     }
     
     /**
@@ -38,7 +36,6 @@ public class Graph implements IGraph {
     {
         Edge edge=new Edge(firstVertex,secondVertex,weight);
         arrayOfListOfEdges[firstVertex-1].add(edge);
-        listOfTotalEdges.add(edge);
     }
 
     @Override
@@ -49,7 +46,7 @@ public class Graph implements IGraph {
         {
             isVisited[i]=false;
         }
-        dFS(1,isVisited);
+        depthFirstSearch(1,isVisited);
         for(int i=0;i<numberOfVertices;i++)
         {
             //if all vertices are visited then graph is connected.
@@ -67,7 +64,7 @@ public class Graph implements IGraph {
      * @param vertex contains vertex from which dfs to be started.
      * @param isVisited contains boolean array which keep track of vertices whether they are visited or not.
      */
-    private void dFS(int vertex,boolean[] isVisited)
+    private void depthFirstSearch(int vertex,boolean[] isVisited)
     {
         isVisited[vertex-1]=true;
         for(Edge edge:arrayOfListOfEdges[vertex-1])
@@ -77,21 +74,25 @@ public class Graph implements IGraph {
             //if destination vertex is not visited then dFS is recursively called for that vertex.
             if(!isDestinationVisited)
             {
-                dFS(destinationVertexOFEdge,isVisited);
+                depthFirstSearch(destinationVertexOFEdge,isVisited);
             }
         }
     }
     
     @Override
-    public List<Integer> getListOfReachableNode(int vertex)
+    public List<Integer> getReachableNodes(int vertex)
     {
+        if(vertex>numberOfVertices)
+        {
+            throw new AssertionError("node doesn't exist in graph");
+        }
         List<Integer> listOfReachableNode=new ArrayList<Integer>();
         boolean[] isVisited=new boolean[numberOfVertices];
         for(int i=0;i<numberOfVertices;i++)
         {
             isVisited[i]=false;
         }
-        dFS(vertex,isVisited);
+        depthFirstSearch(vertex,isVisited);
         for(int i=0;i<numberOfVertices;i++)
         {
             if(isVisited[i])
@@ -161,48 +162,88 @@ public class Graph implements IGraph {
             }
         }
     }
-
+    
     @Override
     public List<Integer> getShortestPath(int source, int destination) {
-        /**List<Integer> shortestPath=new ArrayList<Integer>();
+        if(source>numberOfVertices || destination>numberOfVertices)
+        {
+            throw new AssertionError("source or destination doesn't exist in graph");
+        }
+        List<Integer> shortestPath=new ArrayList<Integer>();
         boolean[] isVisited=new boolean[numberOfVertices];
+        //distanceParentTable is 2D array whose 1st column contains minimum distance and 2nd column contains parent of node.
+        int[][] distanceParentTable=new int[numberOfVertices][2];
+        //initialize distance with infinity
         for(int i=0;i<numberOfVertices;i++)
         {
-            isVisited[i]=false;
+            distanceParentTable[i][0]=Integer.MAX_VALUE;
         }
-        HashMap<Integer,Integer> mapOfDistanceFromSource=new HashMap<Integer,Integer>();
-        mapOfDistanceFromSource.put(source, 0);
-        int currentNode=source;
-        while(currentNode!=destination)
+        distanceParentTable[source-1][0]=0;
+        setDistanceParentTable(source, isVisited, distanceParentTable);
+        int currentNode=destination;
+        while(currentNode!=source)
         {
-            int minimumDistance=Integer.MAX_VALUE;
-            int temporaryNode=currentNode;
-            for(Map.Entry<Integer, Integer> entry:mapOfDistanceFromSource.entrySet())
-            {
-                int currentDistance=entry.getValue();
-                if(minimumDistance>currentDistance && !isVisited[currentNode-1])
-                {
-                    minimumDistance=currentDistance;
-                    temporaryNode=entry.getKey();
-                }
-            }
-            currentNode=temporaryNode;
-            isVisited[currentNode-1]=true;
-            mapOfDistanceFromSource.remove(currentNode);
             shortestPath.add(currentNode);
-            for(Edge edge:listOfTotalEdges)
+            currentNode=distanceParentTable[currentNode-1][1];
+        }
+        shortestPath.add(currentNode);
+        Collections.reverse(shortestPath);
+        return shortestPath;
+
+    }
+    
+    /**
+     * private method to set distanceParentTable with minimum distance of all nodes from source using Dijkstra algorithm.
+     * @param currentNode contains current node which is traversed.
+     * @param isVisited
+     * @param distanceParentTable
+     */
+    private void setDistanceParentTable(int currentNode,boolean[] isVisited,int[][] distanceParentTable)
+    {
+        int minimumDistance=distanceParentTable[currentNode-1][0];
+        for(Edge edge:arrayOfListOfEdges[currentNode-1])
+        {
+            //set distanceParentTable with minimum distance of adjacent nodes of
+            int currentDestination=edge.getSecondNode();
+            int currentDistance=edge.getWeight()+minimumDistance;
+            if(distanceParentTable[currentDestination-1][0]>currentDistance)
             {
-                if(currentNode==edge.getFirstNode() && !isVisited[edge.getSecondNode()-1])
-                {
-                    mapOfDistanceFromSource.put(edge.getSecondNode(), edge.getWeight());
-                }
-                else if(currentNode==edge.getSecondNode && !isVisited[edge.getFirstNode()-1])
-                {
-                    mapOfDistanceFromSource.put(edge.getFirstNode(), edge.getWeight());
-                }
+                distanceParentTable[currentDestination-1][0]=currentDistance;
+                distanceParentTable[currentDestination-1][1]=currentNode;
             }
-            return shortestPath
-        }**/
+        }
+        isVisited[currentNode-1]=true;
+        currentNode=getMinimumDistanceNode(distanceParentTable, isVisited);
+        for(int i=0;i<isVisited.length;i++)
+        {
+            //recursive call to function if any node is not visited.
+            if(!isVisited[i])
+            {
+                setDistanceParentTable(currentNode, isVisited, distanceParentTable);
+            }
+        }
+        
+    }
+    
+    /**
+     * private method to get node with minimum distance distanceParentTable
+     * @param distanceParentTable
+     * @param isVisited
+     * @return returns node
+     */
+    private int getMinimumDistanceNode(int[][] distanceParentTable,boolean[] isVisited)
+    {
+        int node=0;
+        int minimum=Integer.MAX_VALUE;
+        for(int i=0;i<distanceParentTable.length;i++)
+        {
+            if(minimum>distanceParentTable[i][0] && !isVisited[i])
+            {
+                minimum=distanceParentTable[i][0];
+                node=i+1;
+            }
+        } 
+        return node;
     }
 
 }
