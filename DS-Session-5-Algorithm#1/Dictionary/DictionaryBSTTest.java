@@ -9,9 +9,9 @@ import org.junit.Test;
 public class DictionaryUsingBSTTest {
     IDictionary dictionary;
 
-    //test cases for addToDictionary()
+    //test cases for addNode()
     @Test
-    public void testAddToDictionary() {
+    public void testAddNode() {
         dictionary=new DictionaryUsingBST();
         dictionary.addNode(8, "sam");
         List<Node> sortedList=dictionary.getSortedList();
@@ -23,9 +23,9 @@ public class DictionaryUsingBSTTest {
         }
     }
     
-    //test cases for deleteFromDictionary()
+    //test cases for deleteNode()
     @Test
-    public void testDeleteFromDictionary() {
+    public void testDeleteNode() {
         dictionary=new DictionaryUsingBST();
         dictionary.deleteNode(7);
         List<Node> sortedList=dictionary.getSortedList();
