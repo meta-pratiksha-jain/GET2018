@@ -18,36 +18,28 @@ show tables;
 select * from Product;
 
 INSERT Into Category(id,name,parent_category)
-            values(1,'mobile','top category'),
-            (2,'mobile accessories','mobile'),
-            (3,'men','top category'),
-            (4,'women','top category'),
-            (5,'men accessories','men'),
-            (6,'women accessories','women'),
-            (7,'men clothing','men'),
-            (8,'women clothing','women'),
-            (9,'kids','top category'),
-            (10,'toys','kids'),
-            (11,'home','top category');
+            values(1,'mobile',null),
+            (2,'mobile accessories',1),
+            (3,'men',null),
+            (4,'women',null),
+            (5,'men accessories',3),
+            (6,'women accessories',4),
+            (7,'men clothing',3),
+            (8,'women clothing',4),
+            (9,'kids',null),
+            (10,'toys',9),
+            (11,'home',null);
             
 INSERT INTO Product_Category(product_id,category_id)
-            values(1,1),
-            (1,2),
-            (2,3),
+            values(1,2),
             (2,5),
-            (3,1),
             (3,2),
             (4,11),
-            (5,9),
             (5,10),
-            (6,9),
             (6,10),
-            (7,4),
             (7,6),
-            (8,4),
             (8,8),
             (9,11),
-            (10,1),
             (10,2);
             
 INSERT INTO Product_Image(product_id,image_id,image,image_tag)
