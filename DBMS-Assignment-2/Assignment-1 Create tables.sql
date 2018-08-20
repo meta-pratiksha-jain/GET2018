@@ -18,7 +18,7 @@ CREATE TABLE Product_Image(
 product_id int not null,
 image_id int not null,
 image_tag varchar(20) not null,
-primary key(product_id,image_id),
+primary key(image_id),
 foreign key(product_id) references Product(id)
 );
 ALTER TABLE Product_Image
