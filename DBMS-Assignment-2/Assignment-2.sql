@@ -8,11 +8,10 @@ WHERE p.id=pc.product_id AND pc.category_id=c.id AND p.is_active=true
 ORDER BY p.added_on_date DESC;
 
 #3.Display the list of products which don't have any images.
-SELECT c1.id,c1.name,c1.parent_category
-FROM Category c1
-WHERE c1.id NOT IN (SELECT c2.parent_category
-                    FROM Category c2
-                    WHERE c2.parent_category IS NOT NULL);
+SELECT p.name
+FROM Product p
+WHERE p.id NOT IN (SELECT pi.product_id
+             FROM Product_Image pi);
              
 #4.Display all Id, Title and Parent Category Title for all the Categories listed, sorted by Parent Category Title and then Category Title. (If Category is top category then Parent Category Title column should display “Top Category” as value.)
 SELECT c1.id,c1.name,
@@ -25,7 +24,8 @@ ORDER BY c1.parent_category, c1.name;
 SELECT c1.id,c1.name,c1.parent_category
 FROM Category c1
 WHERE c1.id NOT IN (SELECT c2.parent_category
-                      FROM Category c2);
+                    FROM Category c2
+                    WHERE c2.parent_category IS NOT NULL);
                       
 #6.Display Product Title, Price & Description which falls into particular category Title
 SELECT p.name,p.price,p.description
