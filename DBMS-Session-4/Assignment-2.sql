@@ -4,7 +4,10 @@ USE StoreFront;
 DELIMITER $$
 CREATE PROCEDURE get_average_sale(IN input_month INT,IN input_year INT)
 BEGIN
-    SELECT op.product_id,p.name,MONTH(o.order_placing_date),SUM(op.ordered_quantity) AS average_sale
+    SELECT op.product_id,
+           p.name, 
+           MONTH(o.order_placing_date), 
+           SUM(op.ordered_quantity) AS average_sale
     FROM Orders o INNER JOIN Order_Product op ON o.order_id=op.order_id
          INNER JOIN Product p ON op.product_id=p.id
     WHERE MONTH(o.order_placing_date) IN (input_month)
@@ -21,11 +24,19 @@ BEGIN
     IF start_date>end_date THEN 
         SET start_date=end_date-Interval day(end_date) DAY;
     END IF;
-    SELECT o.order_id,o.shopper_id,s.name AS shopper_name,op.product_id,p.name AS product_name,o.order_placing_date,p.price*op.ordered_quantity AS total_price,op.order_status
+    SELECT o.order_id,
+           o.shopper_id,
+           s.name AS shopper_name,
+           op.product_id,
+           p.name AS product_name, 
+           o.order_placing_date,
+           p.price*op.ordered_quantity AS total_price,
+           op.order_status
     FROM Orders o INNER JOIN User s ON o.shopper_id=s.id
          INNER JOIN Order_Product op ON o.order_id=op.order_id
          INNER JOIN Product p ON op.product_id=p.id
-    WHERE o.order_placing_date>=start_date AND o.order_placing_date<=end_date;
+    WHERE o.order_placing_date>=start_date 
+          AND o.order_placing_date<=end_date;
 END $$
 
 CALL get_order_detail('2018-07-06',CURDATE());
