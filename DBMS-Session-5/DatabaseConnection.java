@@ -3,25 +3,31 @@ import java.sql.*;
 
 public class DatabaseConnection {
     
+    /**
+     * Create database connection using JDBC driver
+     * @return returns connection Instance 
+     */
     public static Connection getConnection()
     {
-      Connection conn = null;
-      try
-      {
-        Class.forName("com.mysql.jdbc.Driver");
-        String url = "jdbc:mysql://localhost/StoreFront";
-        String userName="root";
-        String password="password";
-        conn = DriverManager.getConnection(url, userName, password);
-      }
-      catch (ClassNotFoundException e)
-      {
-        e.printStackTrace();
-        System.exit(1);
-      } catch (SQLException e) {
-        e.printStackTrace();
-    }
-      return conn;
+        Connection connection = null;
+        try
+        {
+            //register JDBC Driver
+            Class.forName("com.mysql.jdbc.Driver");
+            String url = "jdbc:mysql://localhost/StoreFront";
+            String userName="root";
+            String password="password";
+            //opens connection
+            connection = DriverManager.getConnection(url, userName, password);
+        }
+        catch (ClassNotFoundException classNotFoundException)
+        {
+            classNotFoundException.printStackTrace();
+        } 
+        catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        }
+        return connection;
     }
 
 }
