@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sign up</title>
+        
+        <style>
+            body{
+                background-color:#D8D4CC;
+            }
+            
+        </style>
+        
+        <script src="sign up.js">
+        </script>
+        
+    </head>
+    
+    <body>
+        <table id="header" width="90%" align="center">
+            <tr>
+                <td><img src="images/logo.png" alt="html5 logo" height="90px"/></td>
+                <td align="right">
+                    <a href="home.html">Home</a>
+                    <a href="">About</a>
+                    <a href="">Product</a>
+                    <a href="">Gallery</a>
+                    <a href="">Contact</a>
+                    <a href="login.html">Login</a>
+                    <a href="sign up.html">Sign Up</a>
+                </td>
+            </tr>
+        </table>
+        <hr width="90%" align="center"/>
+        <h1 align="center">New User? Sign Up</h1>
+        <form action="profile.html" onsubmit="return submitForm()">
+            <table align="center" cellpadding="6">
+                <tr>
+                    <td>First Name:</td>
+                    <td>
+                        <input id="firstName" type="text" placeholder="Enter your first name" required="required" onblur="validateName(id)"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Last Name:</td>
+                    <td>
+                        <input id="lastName" type="text" placeholder="Enter your last name" required="required" onblur="validateName(id)"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td>
+                        <input id="emailId" type="email" placeholder="Enter your email id" required="required" onblur="validateEmail()"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td>
+                        <input id="passwordId" type="password" placeholder="Enter password" required="required" onblur="validatePassword()"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="padding-top:1px">
+                        <font size="1">*password must contain Uppercase, Lowercase, Numeric, Alphanumeric, and length minimum 8</font>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Confirm Password:</td>
+                    <td>
+                        <input id="confirmPasswordId" type="password" placeholder="Enter password again" required="required" onblur="matchPassword()"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Contact Number:</td>
+                    <td>
+                        <input id="contactId" type="tel" placeholder="Enter your contact number" required="required" onblur="validateContact()"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Company/Institution:</td>
+                    <td>
+                        <select>
+                            <option value="metacube">Metacube</option>
+                            <option value="TCS">TCS</option>
+                            <option value="Infosys">Infosys</option>
+                            <option value="Vipro">Vipro</option>
+                            <option value="Mahindra">Mahindra</option>
+                        </select> 
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <input type="button" value="cancel" onClick="location.href='home.html'";
+                    </td>
+                    <td align="center">
+                        <input type="submit" value="Submit"/>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>
