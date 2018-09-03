@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>DE</display-name>
+  <welcome-file-list>
+    <welcome-file>home.html</welcome-file>
+  </welcome-file-list>
+  <filter>
+    <filter-name>ProfileFilter</filter-name>
+    <filter-class>com.filters.ProfileFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>ProfileFilter</filter-name>
+    <url-pattern>/profile.jsp</url-pattern>
+    <dispatcher>REQUEST</dispatcher>
+    <dispatcher>INCLUDE</dispatcher>
+  </filter-mapping>
+  <filter>
+    <filter-name>LoginValidationFilter</filter-name>
+    <filter-class>com.filters.LoginValidationFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>LoginValidationFilter</filter-name>
+    <url-pattern>/LoginServlet</url-pattern>
+    <dispatcher>REQUEST</dispatcher>
+    <dispatcher>INCLUDE</dispatcher>
+  </filter-mapping>
+  <filter>
+    <filter-name>RegistrationValidationFilter</filter-name>
+    <filter-class>com.filters.RegistrationValidationFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>RegistrationValidationFilter</filter-name>
+    <url-pattern>/RegistrationServlet</url-pattern>
+    <dispatcher>REQUEST</dispatcher>
+    <dispatcher>INCLUDE</dispatcher>
+  </filter-mapping>
+  <filter>
+    <filter-name>UpdateValidationFilter</filter-name>
+    <filter-class>com.filters.UpdateValidationFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>UpdateValidationFilter</filter-name>
+    <url-pattern>/UpdateServlet</url-pattern>
+    <dispatcher>REQUEST</dispatcher>
+    <dispatcher>INCLUDE</dispatcher>
+  </filter-mapping>
+</web-app>
