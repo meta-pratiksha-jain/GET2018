@@ -26,7 +26,7 @@ public class AdvertisementResource {
 	public Response createAdvertisement(Advertisement advertisement)
 	{
 		String message=AdvertisementFacade.createAdvertisement(advertisement);
-		response=Response.ok(message,MediaType.APPLICATION_JSON).build();
+		return Response.ok(message,MediaType.APPLICATION_JSON).build();
 	}
 	
 	@GET
@@ -53,7 +53,7 @@ public class AdvertisementResource {
 	public Response updateTitle(@PathParam("id") int id,@PathParam("title") String title)
 	{
 		String message=AdvertisementFacade.updateTitle(title, id);
-		response=Response.ok(message,MediaType.APPLICATION_JSON).build();
+		return Response.ok(message,MediaType.APPLICATION_JSON).build();
 	}
 	
 	@DELETE
@@ -62,7 +62,7 @@ public class AdvertisementResource {
 	public Response deleteAdvertisement(@PathParam("id") int id)
 	{
 		String message=AdvertisementFacade.deleteAdvertisement(id);
-		response=Response.ok(message,MediaType.APPLICATION_JSON).build();
+		return Response.ok(message,MediaType.APPLICATION_JSON).build();
 	}
 
 }
