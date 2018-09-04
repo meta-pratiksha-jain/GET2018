@@ -22,11 +22,10 @@ public class CategoryResource {
 	@POST
 	@Path("/createCategory")
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.TEXT_PLAIN)
-	public String createCategory(Category category)
+	public Response createCategory(Category category)
 	{
 		String message=CategoryFacade.createCategory(category);
-		return message;
+		response=Response.ok(message,MediaType.APPLICATION_JSON).build();
 	}
 	
 	@GET
@@ -41,11 +40,10 @@ public class CategoryResource {
 	@PUT
 	@Path("/updateCategoryName/{id}/{name}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.TEXT_PLAIN)
-	public String updateName(@PathParam("id") int id,@PathParam("name") String name)
+	public Response updateName(@PathParam("id") int id,@PathParam("name") String name)
 	{
 		String message=CategoryFacade.updateName(name,id);
-		return message;
+		response=Response.ok(message,MediaType.APPLICATION_JSON).build();
 	}
 
 }
