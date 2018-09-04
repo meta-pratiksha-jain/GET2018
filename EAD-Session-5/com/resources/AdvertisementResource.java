@@ -23,11 +23,10 @@ public class AdvertisementResource {
 	@POST
 	@Path("/createAdvertisement")
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.TEXT_PLAIN)
-	public String createAdvertisement(Advertisement advertisement)
+	public Response createAdvertisement(Advertisement advertisement)
 	{
 		String message=AdvertisementFacade.createAdvertisement(advertisement);
-		return message;
+		response=Response.ok(message,MediaType.APPLICATION_JSON).build();
 	}
 	
 	@GET
@@ -51,21 +50,19 @@ public class AdvertisementResource {
 	@PUT
 	@Path("/updateAdvertisementTitle/{id}/{title}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.TEXT_PLAIN)
-	public String updateTitle(@PathParam("id") int id,@PathParam("title") String title)
+	public Response updateTitle(@PathParam("id") int id,@PathParam("title") String title)
 	{
 		String message=AdvertisementFacade.updateTitle(title, id);
-		return message;
+		response=Response.ok(message,MediaType.APPLICATION_JSON).build();
 	}
 	
 	@DELETE
 	@Path("/deleteAdvertisement/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.TEXT_PLAIN)
-	public String deleteAdvertisement(@PathParam("id") int id)
+	public Response deleteAdvertisement(@PathParam("id") int id)
 	{
 		String message=AdvertisementFacade.deleteAdvertisement(id);
-		return message;
+		response=Response.ok(message,MediaType.APPLICATION_JSON).build();
 	}
 
 }
