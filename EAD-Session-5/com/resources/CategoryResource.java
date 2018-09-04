@@ -25,7 +25,7 @@ public class CategoryResource {
 	public Response createCategory(Category category)
 	{
 		String message=CategoryFacade.createCategory(category);
-		response=Response.ok(message,MediaType.APPLICATION_JSON).build();
+		return Response.ok(message,MediaType.APPLICATION_JSON).build();
 	}
 	
 	@GET
@@ -43,7 +43,7 @@ public class CategoryResource {
 	public Response updateName(@PathParam("id") int id,@PathParam("name") String name)
 	{
 		String message=CategoryFacade.updateName(name,id);
-		response=Response.ok(message,MediaType.APPLICATION_JSON).build();
+		return Response.ok(message,MediaType.APPLICATION_JSON).build();
 	}
 
 }
