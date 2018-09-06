@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+    <bean id="personCollection" class="com.metacube.training.collectionInjection.PersonCollection">
+        <property name="listOfPerson">
+            <list>
+                <value>Pratiksha</value>
+                <value>Ravi</value>
+                <value>Komal</value>
+                <value>Nisha</value>
+            </list>
+        </property>
+        <property name="setOfPerson">
+            <set>
+                <value>Pratiksha</value>
+                <value>Ravi</value>
+                <value>Komal</value>
+                <value>Nisha</value>
+            </set>
+        </property>
+        <property name="mapOfPerson">
+            <map>
+                <entry key="1" value="Pratiksha"/>
+                <entry key="2" value="Pratiksha"/>
+                <entry key="3" value="Pratiksha"/>
+                <entry key="4" value="Pratiksha"/>
+            </map>
+        </property>
+    </bean>
+</beans>
