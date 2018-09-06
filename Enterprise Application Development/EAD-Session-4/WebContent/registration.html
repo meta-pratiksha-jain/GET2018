@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Registration</title>
+        
+        <style>
+            body{
+                background-color:#D8D4CC;
+            }
+            
+        </style>
+        
+        <script src="validation.js">
+        </script>
+        
+    </head>
+    
+    <body>
+        <table id="header" width="90%" align="center">
+            <tr>
+                <td><img src="images/logo.png" alt="logo" height="90px"/></td>
+                <td align="right">
+                    <a href="home.html">Home</a>
+                    <a href="login.html">Login</a>
+                    <a href="registration.html">Sign Up</a>
+                </td>
+            </tr>
+        </table>
+        <hr/>
+        <h1 align="center">New User? Register Here</h1>
+        <form action="RegistrationServlet" onsubmit="return submitForm()">
+            <table align="center" cellpadding="6">
+                <tr>
+                    <td>First Name:</td>
+                    <td>
+                        <input id="firstName" type="text" name="firstName" placeholder="Enter your first name" maximumLength="100" required="required" onblur="validateName(id)"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Last Name:</td>
+                    <td>
+                        <input id="lastName" type="text" name="lastName" placeholder="Enter your last name" maximumLength="100" required="required" onblur="validateName(id)"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td>
+                        <input id="emailId" type="email" name="email" placeholder="Enter your email id" maximumLength="100" required="required" onblur="validateEmail()"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td>
+                        <input id="passwordId" type="password" name="password" placeholder="Enter password" maximumLength="50" required="required" onblur="validatePassword()"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="padding-top:1px">
+                        <font size="2">*password must contain Uppercase, Lowercase, Numeric, Alphanumeric, and length minimum 8</font>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Confirm Password:</td>
+                    <td>
+                        <input id="confirmPasswordId" type="password" name="confirmPassword" placeholder="Enter password again" maximumLength="50" required="required" onblur="matchPassword()"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Date Of Birth:</td>
+                    <td>
+                        <input id="dob" type="Date" name="dateOfBirth" placeholder="Enter your birth date" required="required" onblur="valideDate"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Contact Number:</td>
+                    <td>
+                        <input id="contactId" type="tel" name="contact" placeholder="Enter your contact number" maximumLength="20" required="required" onblur="validateContact()"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Organization:</td>
+                    <td>
+                        <select name="organization">
+                            <option value="metacube">Metacube</option>
+                            <option value="TCS">TCS</option>
+                            <option value="Infosys">Infosys</option>
+                            <option value="Vipro">Vipro</option>
+                            <option value="Mahindra">Mahindra</option>
+                        </select> 
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <input type="button" value="Cancel" onClick="location.href='home.html'"/>
+                    </td>
+                    <td align="center">
+                        <input type="submit" value="Submit"/>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>
