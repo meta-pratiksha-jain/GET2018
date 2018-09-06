@@ -19,7 +19,6 @@ public class MainApp {
         Map mapOfPerson=personCollection.getMapOfPerson();
         System.out.println("map of person name with their key value as id:");
         System.out.println(mapOfPerson);
-        
     }
 
 }
