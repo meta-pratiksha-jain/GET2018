@@ -3,7 +3,7 @@
 <beans>
     <bean id="textEditor" class="com.metacube.training.autowiring.byType.TextEditor" autowire="byType">
     </bean>
-    <bean id="spellChecker" class="com.metacube.training.autowiring.byType.SpellChecker" autowire="byType">
+    <bean class="com.metacube.training.autowiring.byType.SpellChecker" autowire="byType">
         <property name="spellChecking" value="checking spelling" >
         </property>
     </bean>
