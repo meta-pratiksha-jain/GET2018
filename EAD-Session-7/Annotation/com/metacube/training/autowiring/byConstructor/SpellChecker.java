@@ -1,8 +1,11 @@
 package com.metacube.training.autowiring.byConstructor;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class SpellChecker {
 	private String spellChecking;
 	
+	@Autowired
 	public SpellChecker() {
 		super();
 	}

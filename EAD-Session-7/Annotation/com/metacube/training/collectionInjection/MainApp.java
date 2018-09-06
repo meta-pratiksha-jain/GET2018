@@ -1,15 +1,19 @@
 package com.metacube.training.collectionInjection;
 
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.metacube.training.beanScope.singleton.AppConfiguration;
+
 import java.util.*;
 
 public class MainApp {
     
     public static void main(String args[])
     {
-        ApplicationContext context=new ClassPathXmlApplicationContext("beansCollectionInjection.xml");
-        PersonCollection personCollection=(PersonCollection) context.getBean("personCollection");
+    	ApplicationContext context=new AnnotationConfigApplicationContext(AppConfiguration.class);
+        PersonCollection personCollection=(PersonCollection) context.getBean(PersonCollection.class);
         List listOfPerson=personCollection.getListOfPerson();
         System.out.println("list of person name:");
         System.out.println(listOfPerson);
