@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head lang=en>
+        <meta charset="ISO-8859-1">
+        <title>Profile</title>
+    </head>
+    <body>
+        <div class="container">
+            <h2>Profile</h2>
+            <table class="table table-striped" th:object=${employee}>
+                <tr>
+                    <td>First Name:</td>
+                    <td>th:text="*{firstName}"</td>
+                </tr>
+                <tr>
+                    <td>Middle Name:</td>
+                    <td>th:text="*{middleName}"</td>
+                </tr>
+                <tr>
+                    <td>Last Name:</td>
+                    <td>th:text="*{lastName}"</td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td>th:text="*{email}"</td>
+                </tr>
+                <tr>
+                    <td>Date Of Birth:</td>
+                    <td>th:text="*{dateOfBirth}"</td>
+                </tr>
+                <tr>
+                    <td>Date Of Joining:</td>
+                    <td>th:text="*{dateOfJoining}"</td>
+                </tr>
+                <tr>
+                    <td>Gender:</td>
+                    <td>th:text="*{gender}"</td>
+                </tr>
+                <tr>
+                    <td>Primary Contact Number:</td>
+                    <td>th:text="*{primaryContact}"</td>
+                </tr>
+                <tr>
+                    <td>Secondary Contact Number:</td>
+                    <td>th:text="*{secondaryContact}"</td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>
