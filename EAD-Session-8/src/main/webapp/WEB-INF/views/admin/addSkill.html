@@ -6,7 +6,7 @@
     </head>
     <body>
         <div>
-            <form th:object="${skill}" action="skills" method="post">
+            <form th:object="${skill}" action="skill/add" method="post">
                 <input type="hidden"  th:field="*{id}" />
                 <br>
                 <label>Name:</label> 

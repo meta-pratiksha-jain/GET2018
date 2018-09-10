@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.metacube.training.model.Employee;
 import com.metacube.training.model.Job;
 import com.metacube.training.model.Project;
 import com.metacube.training.model.Skill;
+import com.metacube.training.service.EmployeeService;
 import com.metacube.training.service.JobService;
 import com.metacube.training.service.ProjectService;
 import com.metacube.training.service.SkillService;
@@ -21,12 +23,6 @@ import com.metacube.training.service.SkillService;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-    @Autowired
-    ProjectService projectService;
-    @Autowired
-    SkillService skillService;
-    @Autowired
-    JobService jobService;
     
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView login() {
@@ -37,6 +33,9 @@ public class AdminController {
     public ModelAndView login(@RequestParam(value = "email") String email,@RequestParam(value = "password") String password) {
         return new ModelAndView("admin/dashboard", "email", email);
     }
+    
+    @Autowired
+    ProjectService projectService;
     
     @RequestMapping(value = "/project", method = RequestMethod.GET)
     public ModelAndView project(Model model) {
@@ -86,13 +85,16 @@ public class AdminController {
         return "redirect:/admin/project";
     }
     
+    @Autowired
+    JobService jobService;
+    
     @RequestMapping(value = "/job", method = RequestMethod.GET)
     public ModelAndView job(Model model) {
         model.addAttribute(new Job());
         return new ModelAndView("admin/addJob");
     }
     
-    @RequestMapping(value = "/job", method = RequestMethod.POST)
+    @RequestMapping(value = "/job/add", method = RequestMethod.POST)
     public String job(@ModelAttribute("job") Job job) {
         boolean isJobAdded=false;
         if(job!=null)
@@ -108,6 +110,9 @@ public class AdminController {
             return "redirect:/admin/addJob";
         }
     }
+    
+    @Autowired
+    SkillService skillService;
     
     @RequestMapping(value = "/skill", method = RequestMethod.GET)
     public ModelAndView skill(Model model) {
@@ -132,15 +137,36 @@ public class AdminController {
         }
     }
     
+    @Autowired
+    EmployeeService employeeService;
+    
     @RequestMapping(value = "/addEmployee", method = RequestMethod.GET)
-    public ModelAndView addEmployee() {
+    public ModelAndView addEmployee(Model model) {
+    	model.addAttribute(new Employee());
         return new ModelAndView("admin/addEmployee");
     }
     
     @RequestMapping(value = "/addEmployee", method = RequestMethod.POST)
-    public ModelAndView addEmployee(@RequestParam(value = "firstName") String firstName) {
-
-        return new ModelAndView("admin/dashboard");
+    public String addEmployee(@ModelAttribute("employee") Employee employee) {
+    	boolean isEmployeeAdded=false;
+    	if(employee!=null)
+    	{
+    		isEmployeeAdded=employeeService.addEmployee(employee);
+    	}
+    	if(isEmployeeAdded)
+    	{
+    		return "redirect:/admin/dashboard";
+    	}
+    	else
+    	{
+    		return "redirect:/admin/addEmployee";
+    	}
     }
-
+    
+    @GetMapping(value="/logout")
+    public ModelAndView logout()
+    {
+    	return new ModelAndView("home");
+    }
+    
 }
