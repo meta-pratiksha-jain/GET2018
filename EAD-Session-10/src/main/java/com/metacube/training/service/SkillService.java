@@ -7,6 +7,6 @@ import com.metacube.training.model.Skill;
 public interface SkillService {
     public boolean addSkill(Skill skill);
     
-    public List<Skill> getAll();
+    public List<Skill> getAllSkills();
 
 }

@@ -69,17 +69,17 @@ public class AdminController {
         }
         else
         {
-            return "redirect:/admin/edit";
+            return "redirect:/admin/project/edit";
         }
     }
     
-    @PostMapping(value="/project/edit")
+    @GetMapping(value="/project/edit")
     public ModelAndView editProject(@RequestParam("id") int id){
         Project project=projectService.getProjectById(id);
         return new ModelAndView("admin/editProject", "project", project);
     }
     
-    @PostMapping(value="/project/delete")
+    @GetMapping(value="/project/delete")
     public String deleteProject(@RequestParam("id") int id){
         projectService.deleteProject(id);
         return "redirect:/admin/project";
@@ -88,14 +88,21 @@ public class AdminController {
     @Autowired
     JobService jobService;
     
-    @RequestMapping(value = "/job", method = RequestMethod.GET)
-    public ModelAndView job(Model model) {
+    @GetMapping(value="/job")
+    public ModelAndView job(Model model)
+    {
+    	model.addAttribute("jobs",jobService.getAllJobs());
+    	return new ModelAndView("admin/jobs");
+    }
+    
+    @RequestMapping(value = "/job/add", method = RequestMethod.GET)
+    public ModelAndView addJob(Model model) {
         model.addAttribute(new Job());
         return new ModelAndView("admin/addJob");
     }
     
     @RequestMapping(value = "/job/add", method = RequestMethod.POST)
-    public String job(@ModelAttribute("job") Job job) {
+    public String addJob(@ModelAttribute("job") Job job) {
         boolean isJobAdded=false;
         if(job!=null)
         {
@@ -103,25 +110,32 @@ public class AdminController {
         }
         if(isJobAdded)
         {
-            return "redirect:/admin/dashboard";
+            return "redirect:/admin/job";
         }
         else
         {
-            return "redirect:/admin/addJob";
+            return "redirect:/admin/job/add";
         }
     }
     
     @Autowired
     SkillService skillService;
     
-    @RequestMapping(value = "/skill", method = RequestMethod.GET)
-    public ModelAndView skill(Model model) {
+    @GetMapping(value="/skill")
+    public ModelAndView skill(Model model)
+    {
+    	model.addAttribute("skills",skillService.getAllSkills());
+    	return new ModelAndView("admin/skills");
+    }
+    
+    @RequestMapping(value = "/skill/add", method = RequestMethod.GET)
+    public ModelAndView addSkill(Model model) {
         model.addAttribute(new Skill());
         return new ModelAndView("admin/addSkill");
     }
     
     @RequestMapping(value = "/skill/add", method = RequestMethod.POST)
-    public String skill(@ModelAttribute("skill") Skill skill) {
+    public String addSkill(@ModelAttribute("skill") Skill skill) {
         boolean isSkillAdded=false;
         if(skill!=null)
         {
@@ -129,44 +143,65 @@ public class AdminController {
         }
         if(isSkillAdded)
         {
-            return "redirect:/admin/dashboard";
+            return "redirect:/admin/skill";
         }
         else
         {
-            return "redirect:/admin/addSkill";
+            return "redirect:/admin/skill/add";
         }
     }
     
     @Autowired
     EmployeeService employeeService;
     
-    @RequestMapping(value = "/addEmployee", method = RequestMethod.GET)
+    @GetMapping(value="/employee")
+    public ModelAndView employee(Model model)
+    {
+    	model.addAttribute("employees",employeeService.getAllEmployees());
+    	return new ModelAndView("admin/employees");
+    }
+    
+    @RequestMapping(value = "employee/add", method = RequestMethod.GET)
     public ModelAndView addEmployee(Model model) {
-        model.addAttribute(new Employee());
+    	model.addAttribute(new Employee());
         return new ModelAndView("admin/addEmployee");
     }
     
-    @RequestMapping(value = "/addEmployee", method = RequestMethod.POST)
+    @RequestMapping(value = "employee/add", method = RequestMethod.POST)
     public String addEmployee(@ModelAttribute("employee") Employee employee) {
-        boolean isEmployeeAdded=false;
-        if(employee!=null)
-        {
-            isEmployeeAdded=employeeService.addEmployee(employee);
-        }
-        if(isEmployeeAdded)
-        {
-            return "redirect:/admin/addEmployee";
-        }
-        else
-        {
-            return "redirect:/admin/addEmployee";
-        }
+    	boolean isEmployeeAdded=false;
+    	if(employee!=null)
+    	{
+    		isEmployeeAdded=employeeService.addEmployee(employee);
+    	}
+    	if(isEmployeeAdded)
+    	{
+    		return "redirect:/admin/employee";
+    	}
+    	else
+    	{
+    		return "redirect:/admin/addEmployee";
+    	}
+    }
+    
+    @GetMapping(value="employee/enable")
+    public String enableEmployee(@RequestParam("id") int id)
+    {
+    	employeeService.enableEmployee(id);
+    	return "redirect:/admin/employee";
+    }
+    
+    @GetMapping(value="employee/disable")
+    public String disableEmployee(@RequestParam("id") int id)
+    {
+    	employeeService.disableEmployee(id);
+    	return "redirect:/admin/employee";
     }
     
     @GetMapping(value="/logout")
     public ModelAndView logout()
     {
-        return new ModelAndView("home");
+    	return new ModelAndView("home");
     }
     
 }

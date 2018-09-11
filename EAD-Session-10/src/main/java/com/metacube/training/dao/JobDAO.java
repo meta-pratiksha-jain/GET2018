@@ -1,10 +1,12 @@
 package com.metacube.training.dao;
 
+import java.util.List;
+
 import com.metacube.training.model.Job;
 
 public interface JobDAO {
     
-    public String INSERT="INSERT INTO Job(title) VALUES(?)";
+    public List<Job> getAllJobs();
     
     public boolean addJob(Job job);
     

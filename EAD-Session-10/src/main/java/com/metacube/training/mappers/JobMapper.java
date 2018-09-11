@@ -11,7 +11,7 @@ public class JobMapper implements RowMapper<Job> {
     public Job mapRow(ResultSet resultSet, int i) throws SQLException {
         Job job=new Job();
         job.setId(resultSet.getInt("id"));
-        job.setTitle("title");
+        job.setTitle(resultSet.getString("title"));
         return job;
     }
 

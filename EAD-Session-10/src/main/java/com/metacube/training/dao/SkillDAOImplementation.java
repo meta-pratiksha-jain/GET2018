@@ -14,6 +14,10 @@ import com.metacube.training.model.Skill;
 @Repository
 public class SkillDAOImplementation implements SkillDAO{
     private JdbcTemplate jdbcTemplate;
+    
+public String INSERT="INSERT INTO Skill(name) VALUES(?)";
+    
+    public String GET_ALL="SELECT id,name FROM Skill";
 
     @Autowired
     public SkillDAOImplementation(DataSource dataSource) {
@@ -31,7 +35,7 @@ public class SkillDAOImplementation implements SkillDAO{
     }
 
     @Override
-    public List<Skill> getAll() {
+    public List<Skill> getAllSkills() {
         List<Skill> listOfSkill=jdbcTemplate.query(GET_ALL, new SkillMapper());
         return listOfSkill;
     }

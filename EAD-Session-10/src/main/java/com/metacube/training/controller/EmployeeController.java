@@ -16,26 +16,26 @@ import com.metacube.training.service.EmployeeService;
 @Controller
 @RequestMapping(value="/employee")
 public class EmployeeController {
-    @Autowired
-    EmployeeService employeeService;
-    
-        @GetMapping(value = "/login")
-        public ModelAndView login() {
-            return new ModelAndView("employee/login");
-        }
-        
-        @PostMapping(value = "/login")
-        public String login(@RequestParam(value = "email") String email,@RequestParam(value = "password") String password,Model model) {
-            Employee employee=employeeService.login(email,password);
-            if(employee==null)
-            {
-                return "redirect:/employee/login";
-            }
-            else
-            {
-                model.addAttribute(employee);
-                return "employee/dashboard";
-            }
-        }
+	@Autowired
+	EmployeeService employeeService;
+	
+	    @GetMapping(value = "/login")
+	    public ModelAndView login() {
+	        return new ModelAndView("employee/login");
+	    }
+	    
+	    @PostMapping(value = "/login")
+	    public String login(@RequestParam(value = "email") String email,@RequestParam(value = "password") String password,Model model) {
+	    	Employee employee=employeeService.login(email,password);
+	    	if(employee==null)
+	    	{
+	    		return "redirect:/employee/login";
+	    	}
+	    	else
+	    	{
+	    		model.addAttribute(employee);
+	    		return "employee/dashboard";
+	    	}
+	    }
 
 }
