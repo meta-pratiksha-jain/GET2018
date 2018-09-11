@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head lang=en>
+        <meta charset="ISO-8859-1">
+        <title>Add Job</title>
+    </head>
+    <body>
+        <div>
+            <form th:object="${job}" action="@{../job/add}" method="post">
+                <input type="hidden"  th:field="*{id}" />
+                <br>
+                <label>Title:</label> 
+                <input type="text" th:field="*{title}" /> 
+                <br>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </form>
+        </div>
+    </body>
+</html>

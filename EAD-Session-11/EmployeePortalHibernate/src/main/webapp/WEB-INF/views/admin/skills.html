@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Skills</title>
+	</head>
+	<body>
+	<a th:href="@{skills/add}">Add a new skill</a>
+	<br />
+		<h2>ALL SKILLS</h2>
+		<table>
+			<tr>
+				<th>Id</th>
+				<th>Name</th>
+			</tr>
+			<tr th:each="skill: ${skills}">
+				<td th:text="${skill.id}">Id</td>
+				<td th:text="${skill.name}">Name</td>
+			</tr>
+		</table>
+		
+		
+	</body>
+</html>
