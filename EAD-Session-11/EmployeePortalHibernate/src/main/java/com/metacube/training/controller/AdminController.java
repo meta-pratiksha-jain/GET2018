@@ -53,10 +53,11 @@ public class AdminController {
     public String saveProject(@ModelAttribute("project") Project project) {
         boolean isProjectSaved=false;
         if(project!=null)
-        {
+        {	
             if(project.getId()==0)
             {
-                isProjectSaved=projectService.createProject(project);
+               
+            	isProjectSaved=projectService.createProject(project);
             }
             else if(project.getId()!=0)
             {
@@ -180,7 +181,7 @@ public class AdminController {
     	}
     	else
     	{
-    		return "redirect:/admin/addEmployee";
+    		return "redirect:/admin/employee/add";
     	}
     }
     

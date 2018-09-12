@@ -3,7 +3,7 @@ package com.metacube.training.dao;
 import java.util.List;
 
 import javax.persistence.TypedQuery;
-import javax.sql.DataSource;
+import javax.transaction.Transactional;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -11,13 +11,12 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.metacube.training.mappers.EmployeeMapper;
 import com.metacube.training.model.Employee;
 
 @Repository
+@Transactional
 public class EmployeeDAOImplementation implements EmployeeDAO{
 	/*
 	public String INSERT="INSERT INTO Employee(first_name,middle_name,last_name,email,date_of_birth,gender) "
@@ -26,7 +25,6 @@ public class EmployeeDAOImplementation implements EmployeeDAO{
 	public static final String CHECK_EMPLOYEE_LOGIN="SELECT * FROM Employee WHERE email=? AND password=?";
 	public static final String ENABLE_EMPLOYEE="UPDATE Employee SET is_enable=true WHERE id=?";
 	public static final String DISABLE_EMPLOYEE="UPDATE Employee SET is_enable=false WHERE id=?";
-
 	JdbcTemplate jdbcTemplate;
 	
 	@Autowired
@@ -45,18 +43,24 @@ public class EmployeeDAOImplementation implements EmployeeDAO{
             return false;
         }
         return true;*/
-		try{
-	    	Session session=sessionFactory.getCurrentSession();
-	    	Transaction transaction=session.beginTransaction();
-	    	session.save(employee);
-	    	transaction.commit();
-	    	session.close();
-	    	return true;
-	    	}
-	    	catch(Exception exception)
-	    	{
-	    		return false;
-	    	}
+		Session session=null;
+    	try{
+    	session=sessionFactory.openSession();
+    	Transaction transaction=session.beginTransaction();
+    	session.save(employee);
+    	transaction.commit();
+    	return true;
+    	}
+    	catch(Exception exception)
+    	{
+    		return false;
+    	}
+    	finally{
+    		if(session!=null)
+    		{
+    		session.close();
+    		}
+    	}
     }
 
 	@Override

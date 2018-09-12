@@ -34,7 +34,7 @@ public class EmployeeController {
 	    	else
 	    	{
 	    		model.addAttribute(employee);
-	    		return "employee/dashboard";
+	    		return "employee/profile";
 	    	}
 	    }
 

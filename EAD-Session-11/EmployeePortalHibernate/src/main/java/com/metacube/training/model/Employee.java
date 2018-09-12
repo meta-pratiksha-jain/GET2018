@@ -45,6 +45,15 @@ public class Employee {
 	@Column(name="is_enable")
 	private boolean isEnable;
 	
+	@Column(name="primary_contact")
+	private String primaryContact;
+	
+	public String getPrimaryContact() {
+		return primaryContact;
+	}
+	public void setPrimaryContact(String primaryContact) {
+		this.primaryContact = primaryContact;
+	}
 	public boolean isEnable() {
 		return isEnable;
 	}

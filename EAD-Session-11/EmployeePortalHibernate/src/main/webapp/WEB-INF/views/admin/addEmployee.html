@@ -22,7 +22,10 @@
                 <input type="email"  th:field="*{email}" /> 
                 <br>
                 <label>Date Of Birth:</label> 
-                <input type="Date" th:field="*{dateOfBirth}" />
+                <input type="date" th:field="*{dateOfBirth}" />
+                <br>
+                <label>Primary Contact Number:</label> 
+                <input type="text" th:field="*{primaryContact}" />
                 <br>
                 <label>Gender</label> 
                 <input type="radio" th:field="*{gender}" th:value="Male" />Male

@@ -2,12 +2,18 @@ package com.metacube.training.model;
 
 import java.util.Date;
 
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.lang.NonNull;
 
 @Entity
 @Table(name="Project")
@@ -31,9 +37,13 @@ public class Project {
     private String description;
 	
 	@Column(name="start_date")
+	@DateTimeFormat(pattern= "yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
     private Date startDate;
 	
 	@Column(name="end_date")
+	@DateTimeFormat(pattern= "yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
     private Date endDate;
 	
 	@Column(name="project_logo")
@@ -87,7 +97,5 @@ public class Project {
         this.projectLogo = projectLogo;
     }
     
-    
-
 }
 

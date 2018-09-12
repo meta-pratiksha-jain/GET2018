@@ -3,27 +3,23 @@ package com.metacube.training.dao;
 import java.util.List;
 
 import javax.persistence.TypedQuery;
-import javax.sql.DataSource;
+import javax.transaction.Transactional;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.metacube.training.mappers.JobMapper;
-import com.metacube.training.mappers.ProjectMapper;
 import com.metacube.training.model.Job;
-import com.metacube.training.model.Project;
 
 @Repository
+@Transactional
 public class JobDAOImplementation implements JobDAO {
    /* JdbcTemplate jdbcTemplate;
     public static final String INSERT="INSERT INTO Job(title) VALUES(?)";
     
     public static final String GET_ALL="SELECT * FROM Job";
-
     @Autowired
     public JobDAOImplementation(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
@@ -40,18 +36,24 @@ public class JobDAOImplementation implements JobDAO {
             return false;
         }
         return true;*/
-        try{
-        	Session session=sessionFactory.getCurrentSession();
-        	Transaction transaction=session.beginTransaction();
-        	session.save(job);
-        	transaction.commit();
-        	session.close();
-        	return true;
-        	}
-        	catch(Exception exception)
-        	{
-        		return false;
-        	}
+    	Session session=null;
+    	try{
+    	session=sessionFactory.openSession();
+    	Transaction transaction=session.beginTransaction();
+    	session.save(job);
+    	transaction.commit();
+    	return true;
+    	}
+    	catch(Exception exception)
+    	{
+    		return false;
+    	}
+    	finally{
+    		if(session!=null)
+    		{
+    		session.close();
+    		}
+    	}
     }
 
 	@Override

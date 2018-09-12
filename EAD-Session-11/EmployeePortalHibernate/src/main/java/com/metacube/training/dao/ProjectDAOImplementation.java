@@ -11,7 +11,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.metacube.training.model.Project;
@@ -42,17 +41,24 @@ public class ProjectDAOImplementation implements ProjectDAO {
             return false;
         }
         return true;*/
+    	
+    	Session session=null;
     	try{
-    	Session session=sessionFactory.getCurrentSession();
+    	session=sessionFactory.openSession();
     	Transaction transaction=session.beginTransaction();
     	session.save(project);
     	transaction.commit();
-    	session.close();
     	return true;
     	}
     	catch(Exception exception)
     	{
     		return false;
+    	}
+    	finally{
+    		if(session!=null)
+    		{
+    		session.close();
+    		}
     	}
     }
 
@@ -77,21 +83,39 @@ public class ProjectDAOImplementation implements ProjectDAO {
 
     @Override
     public boolean updateProject(Project project) {
-        int updatedRows=jdbcTemplate.update(UPDATE,project.getName(), project.getDescription(),project.getStartDate(),project.getEndDate(),project.getId());
+        /*int updatedRows=jdbcTemplate.update(UPDATE,project.getName(), project.getDescription(),project.getStartDate(),project.getEndDate(),project.getId());
         if(updatedRows==0)
         {
             return false;
         }
-        return true;
+        return true;*/
+    	Session session=null;
+    	try{
+    	session=sessionFactory.openSession();
+    	Transaction transaction=session.beginTransaction();
+    	
+    	transaction.commit();
+    	return true;
+    	}
+    	catch(Exception exception)
+    	{
+    		return false;
+    	}
+    	finally{
+    		if(session!=null)
+    		{
+    		session.close();
+    		}
+    	}
     }
 
     @Override
     public boolean deleteProject(int id) {
-        int updatedRows=jdbcTemplate.update(DELETE,id);
+       /* int updatedRows=jdbcTemplate.update(DELETE,id);
         if(updatedRows==0)
         {
             return false;
-        }
+        }*/
         return true;
     }
 

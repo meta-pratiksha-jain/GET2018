@@ -5,34 +5,46 @@
 <title>Profile</title>
 </head>
 <body>
-<div class="container">
-                <h2>Profile</h2>
-                <table class="table table-striped" th:object=${employee}>
-                    <tr>
-                        <td>First Name:</td>
-                        <td>th:text="{firstName}"</td>
-                    </tr>
-                    <tr>
-                        <td>Middle Name:</td>
-                        <td>th:text="*{middleName}"</td>
-                    </tr>
-                    <tr>
-                        <td>Last Name:</td>
-                        <td>th:text="*{lastName}"</td>
-                    </tr>
-                    <tr>
-                        <td>Email:</td>
-                        <td>th:text="*{email}"</td>
-                    </tr>
-                    <tr>
-                        <td>Gender:</td>
-                        <td>th:text="*{gender}"</td>
-                    </tr>
-                    <tr>
-                        <td>Date Of Birth:</td>
-                        <td>th:text="*{dateOfBirth}"</td>
-                    </tr>
-                </table>
-            </div>
+<div>
+		<p>
+			<a th:href="${'editProfile?id=' + employee.empCode}">EditProfile |</a> 
+			<a th:href="${'searchEmployee?id=' + employee.empCode}">SearchEmployee |</a> 
+			<a href="Logout">LogOut</a>
+		</p>
+	</div>
+	<div>
+		<h1>My Profile</h1>
+		<table>
+			<tr><td>Id</td>
+			<td th:text="${employee.id}"></td>
+			</tr>
+			<tr>
+				<td>Name:</td>
+				<td th:text="${employee.firstName}">firstName</td>
+				<td th:text="${employee.middleName}">middleName</td>
+				<td th:text="${employee.lastName}">lastName</td>
+			</tr>
+			<tr>
+				<td>Date Of Birth:</td>
+				<td th:text="${employee.dateOfBirth}">dateOfBirth</td>
+			</tr>
+			<tr>
+				<td>Gender:</td>
+				<td th:text="${employee.gender}">gender</td>
+			</tr>
+			<tr>
+				<td>Email:</td>
+				<td th:text="${employee.email}">email</td>
+			</tr>
+			<tr>
+				<td>Primary Contact</td>
+				<td th:text="${employee.primaryContact}">primary</td>
+			</tr>
+			<tr>
+				<td>Secondary Contact:</td>
+				<td th:text="${employee.secondaryContact}">secondary</td>
+			</tr>
+		</table>
+	</div>
 </body>
 </html>

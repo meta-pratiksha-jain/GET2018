@@ -3,27 +3,24 @@ package com.metacube.training.dao;
 import java.util.List;
 
 import javax.persistence.TypedQuery;
-import javax.sql.DataSource;
+import javax.transaction.Transactional;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.metacube.training.mappers.SkillMapper;
-import com.metacube.training.model.Project;
 import com.metacube.training.model.Skill;
 
 @Repository
+@Transactional
 public class SkillDAOImplementation implements SkillDAO{
    /* private JdbcTemplate jdbcTemplate;
     
 public String INSERT="INSERT INTO Skill(name) VALUES(?)";
     
     public String GET_ALL="SELECT id,name FROM Skill";
-
     @Autowired
     public SkillDAOImplementation(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
@@ -40,18 +37,24 @@ public String INSERT="INSERT INTO Skill(name) VALUES(?)";
             return false;
         }
         return true;*/
+    	Session session=null;
     	try{
-        	Session session=sessionFactory.getCurrentSession();
-        	Transaction transaction=session.beginTransaction();
-        	session.save(skill);
-        	transaction.commit();
-        	session.close();
-        	return true;
-        	}
-        	catch(Exception exception)
-        	{
-        		return false;
-        	}
+    	session=sessionFactory.openSession();
+    	Transaction transaction=session.beginTransaction();
+    	session.save(skill);
+    	transaction.commit();
+    	return true;
+    	}
+    	catch(Exception exception)
+    	{
+    		return false;
+    	}
+    	finally{
+    		if(session!=null)
+    		{
+    		session.close();
+    		}
+    	}
     }
 
     @Override
