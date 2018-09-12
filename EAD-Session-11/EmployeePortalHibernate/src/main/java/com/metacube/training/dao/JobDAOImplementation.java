@@ -59,7 +59,7 @@ public class JobDAOImplementation implements JobDAO {
 		/*List<Job> listOfJob=jdbcTemplate.query(GET_ALL, new JobMapper());
         return listOfJob;*/
 		@SuppressWarnings("unchecked")
-		TypedQuery<Project> query=sessionFactory.getCurrentSession().createQuery("from Job");
+		TypedQuery<Job> query=sessionFactory.getCurrentSession().createQuery("from Job");
     	return query.getResultList();
 	}
 
