@@ -59,7 +59,7 @@ public String INSERT="INSERT INTO Skill(name) VALUES(?)";
        /* List<Skill> listOfSkill=jdbcTemplate.query(GET_ALL, new SkillMapper());
         return listOfSkill;*/
     	@SuppressWarnings("unchecked")
-		TypedQuery<Project> query=sessionFactory.getCurrentSession().createQuery("from Skill");
+		TypedQuery<Skill> query=sessionFactory.getCurrentSession().createQuery("from Skill");
     	return query.getResultList();
     }
     
