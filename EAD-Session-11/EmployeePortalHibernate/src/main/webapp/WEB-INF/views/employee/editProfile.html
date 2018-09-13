@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Edit Profile</title>
+</head>
+<body>
+<h1>Edit details</h1>
+	<form th:object="${employee}" th:action="@{edit}" method="post">
+		<table>
+			<tr>
+				<td>Employee Id:</td>
+				<td><input type="text" th:field="*{id}"  readonly/></td>
+			</tr> 
+			<tr>
+				<td>First Name:</td>
+				<td><input type="text" th:field="*{firstName}" /></td>
+				</tr>
+			<tr>
+				<td>Middle Name</td>
+				<td><input type="text" th:field="*{middleName}" /></td>
+			</tr>
+			<tr>
+				<td>Last Name</td>
+				<td><input type="text" th:field="*{lastName}" /></td>
+			</tr>
+			<tr>
+				<td>Email</td>
+				<td><input type="email" th:field="*{email}" /></td>
+			</tr>
+			<tr>
+				<td>Date Of Birth</td>
+				<td><input type="date" th:field="*{dateOfBirth}" /></td>
+			</tr>
+			<tr>
+				<td>Gender</td>
+				<td><input type="radio" th:field="*{gender}" th:value="Male" />Male</td>
+				<td><input type="radio" th:field="*{gender}" th:value="Female" />Female</td>
+			</tr>
+			<tr>
+		 		<td>PrimaryContact</td>
+				<td><input type="text" th:field="*{primaryContact}" /></td>
+			</tr>	
+			<tr>
+				<td><input type="submit" value="submit" /></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>
