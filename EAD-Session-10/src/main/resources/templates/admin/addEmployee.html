@@ -6,7 +6,7 @@
     </head>
     <body>
         <div>
-            <form th:object="${employee}" th:action="@{../addEmployee}" method="post">
+            <form th:object="${employee}" th:action="@{../employee/add}" method="post">
                 <input type="hidden"  th:field="*{id}" />
                 <br>
                 <label>First Name:</label> 
@@ -22,7 +22,10 @@
                 <input type="email"  th:field="*{email}" /> 
                 <br>
                 <label>Date Of Birth:</label> 
-                <input type="Date" th:field="*{dateOfBirth}" />
+                <input type="date" th:field="*{dateOfBirth}" />
+                <br>
+                <label>Primary Contact Number:</label> 
+                <input type="text" th:field="*{primaryContact}" />
                 <br>
                 <label>Gender</label> 
                 <input type="radio" th:field="*{gender}" th:value="Male" />Male

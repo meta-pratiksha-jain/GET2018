@@ -19,9 +19,11 @@ public class EmployeeDAOImplementation implements EmployeeDAO{
 	public String INSERT="INSERT INTO Employee(first_name,middle_name,last_name,email,date_of_birth,gender) "
 	           + "VALUES(?,?,?,?,?,?,?)";
 	public static final String GET_ALL="SELECT * FROM Employee";
-	public static final String CHECK_EMPLOYEE_LOGIN="SELECT * FROM Employee WHERE email=? AND password=?";
+	public static final String CHECK_EMPLOYEE_LOGIN="SELECT * FROM Employee WHERE email=? AND password=? AND is_enable=true";
 	public static final String ENABLE_EMPLOYEE="UPDATE Employee SET is_enable=true WHERE id=?";
 	public static final String DISABLE_EMPLOYEE="UPDATE Employee SET is_enable=false WHERE id=?";
+	public static final String GET_EMPLOYEE_BY_ID="SELECT * FROM Employee WHERE id=?";
+	public static final String UPDATE_EMPLOYEE="UPDATE Employee SET first_name=?,middle_name=?,last_name=?,email=?,date_of_birth=?,gender=?,primary_contact=? WHERE id=?";
 
 	JdbcTemplate jdbcTemplate;
 	
@@ -73,6 +75,22 @@ public class EmployeeDAOImplementation implements EmployeeDAO{
 	@Override
 	public boolean disableEmployee(int id) {
 		int updatedRows=jdbcTemplate.update(DISABLE_EMPLOYEE,id);
+		if(updatedRows==0)
+		{
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public Employee getEmployee(int id) {
+		Employee employee=jdbcTemplate.queryForObject(GET_EMPLOYEE_BY_ID, new Object[] {id},new EmployeeMapper());
+		return employee;
+	}
+
+	@Override
+	public boolean updateEmployee(Employee employee) {
+		int updatedRows=jdbcTemplate.update(UPDATE_EMPLOYEE,employee.getFirstName(),employee.getMiddleName(),employee.getLastName(),employee.getEmail(),employee.getDateOfBirth(),employee.getGender(),employee.getPrimaryContact());
 		if(updatedRows==0)
 		{
 			return false;

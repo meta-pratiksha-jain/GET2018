@@ -30,9 +30,9 @@
                         <td th:text="${employee.dateOfBirth}">Date Of Birth</td>
                         <td th:text="${employee.gender}">Gender</td>
                         <td th:text="${employee.email}">Email</td>
-                        <td th:text="${employee.isEnable}">is Enable</td>
-                        <td><a th:href="${'employee/enable?id=' + employee.id}" class="btn btn-default">Enable</a></td>
-                        <td><a th:href="${'employee/disable?id=' + employee.id}" class="btn btn-danger">Disable</a></td>
+                        <td><span th:text="${employee.isEnable} ? 'enabled' : 'disabled' "></span></td>
+                        <td><a th:href="${'employee/enable?id=' + employee.id}" >Enable</a></td>
+                        <td><a th:href="${'employee/disable?id=' + employee.id}" >Disable</a></td>
                     </tr>
                 </table>
             </div>

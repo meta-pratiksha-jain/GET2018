@@ -11,11 +11,18 @@ public class Employee {
 	private Date dateOfBirth;
 	private String gender;
 	private boolean isEnable;
+	private String primaryContact;
 	
-	public boolean isEnable() {
+	public String getPrimaryContact() {
+		return primaryContact;
+	}
+	public void setPrimaryContact(String primaryContact) {
+		this.primaryContact = primaryContact;
+	}
+	public boolean getIsEnable() {
 		return isEnable;
 	}
-	public void setEnable(boolean isEnable) {
+	public void setIsEnable(boolean isEnable) {
 		this.isEnable = isEnable;
 	}
 	public int getId() {

@@ -15,5 +15,9 @@ public interface EmployeeDAO {
     public List<Employee> getAllEmployees();
     
     public Employee login(String email,String password);
+    
+    public Employee getEmployee(int id);
+    
+    public boolean updateEmployee(Employee employee);
 
 }

@@ -38,4 +38,14 @@ public class EmployeeServiceImplementation implements EmployeeService{
 		return employeeDAO.disableEmployee(id);
 	}
 
+	@Override
+	public Employee getEmployee(int id) {
+		return employeeDAO.getEmployee(id);
+	}
+
+	@Override
+	public boolean updateEmployee(Employee employee) {
+		return employeeDAO.updateEmployee(employee);
+	}
+
 }

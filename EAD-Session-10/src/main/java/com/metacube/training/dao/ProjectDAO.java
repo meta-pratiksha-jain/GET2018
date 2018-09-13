@@ -5,6 +5,8 @@ import com.metacube.training.model.Project;
 
 public interface ProjectDAO {
     
+    
+    
     boolean createProject(Project project);
     
     Project getProjectById(int id);

@@ -53,10 +53,11 @@ public class AdminController {
     public String saveProject(@ModelAttribute("project") Project project) {
         boolean isProjectSaved=false;
         if(project!=null)
-        {
+        {	
             if(project.getId()==0)
             {
-                isProjectSaved=projectService.createProject(project);
+               
+            	isProjectSaved=projectService.createProject(project);
             }
             else if(project.getId()!=0)
             {
@@ -158,6 +159,7 @@ public class AdminController {
     public ModelAndView employee(Model model)
     {
     	model.addAttribute("employees",employeeService.getAllEmployees());
+    	System.out.println(employeeService.getAllEmployees().get(0));
     	return new ModelAndView("admin/employees");
     }
     
@@ -180,7 +182,7 @@ public class AdminController {
     	}
     	else
     	{
-    		return "redirect:/admin/addEmployee";
+    		return "redirect:/admin/employee/add";
     	}
     }
     
@@ -199,9 +201,9 @@ public class AdminController {
     }
     
     @GetMapping(value="/logout")
-    public ModelAndView logout()
+    public String logout()
     {
-    	return new ModelAndView("home");
+    	return "redirect:/";
     }
     
 }
