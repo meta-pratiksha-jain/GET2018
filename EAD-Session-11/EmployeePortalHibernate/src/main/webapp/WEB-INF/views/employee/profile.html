@@ -7,9 +7,9 @@
 <body>
 <div>
 		<p>
-			<a th:href="${'editProfile?id=' + employee.empCode}">EditProfile |</a> 
-			<a th:href="${'searchEmployee?id=' + employee.empCode}">SearchEmployee |</a> 
-			<a href="Logout">LogOut</a>
+			<a th:href="${'edit?id=' + employee.id}">EditProfile |</a> 
+			<a th:href="${'searchEmployee?id=' + employee.id}">SearchEmployee |</a> 
+			<a href="logout">LogOut</a>
 		</p>
 	</div>
 	<div>
@@ -19,9 +19,15 @@
 			<td th:text="${employee.id}"></td>
 			</tr>
 			<tr>
-				<td>Name:</td>
+				<td>First Name:</td>
 				<td th:text="${employee.firstName}">firstName</td>
+				</tr>
+				<tr>
+				<td>Middle Name:</td>
 				<td th:text="${employee.middleName}">middleName</td>
+				</tr>
+				<tr>
+				<td>Last Name:</td>
 				<td th:text="${employee.lastName}">lastName</td>
 			</tr>
 			<tr>

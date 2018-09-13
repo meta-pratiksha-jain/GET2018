@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>Edit details</h1>
-	<form th:object="${employee}" th:action="@{profile}" method="post">
+	<form th:object="${employee}" th:action="@{edit}" method="post">
 		<table>
 			<tr>
 				<td>Employee Id:</td>
@@ -25,16 +25,17 @@
 				<td><input type="text" th:field="*{lastName}" /></td>
 			</tr>
 			<tr>
-				<td>EmailId</td>
-				<td><input type="email" th:field="*{emailId}" /></td>
+				<td>Email</td>
+				<td><input type="email" th:field="*{email}" /></td>
 			</tr>
 			<tr>
-				<td>password</td>
-				<td><input type="text" th:field="*{password}" /></td>
+				<td>Date Of Birth</td>
+				<td><input type="date" th:field="*{dateOfBirth}" /></td>
 			</tr>
 			<tr>
 				<td>Gender</td>
-				<td><input type="text" th:field="*{gender}" readonly /></td>
+				<td><input type="radio" th:field="*{gender}" th:value="Male" />Male</td>
+				<td><input type="radio" th:field="*{gender}" th:value="Female" />Female</td>
 			</tr>
 			<tr>
 		 		<td>PrimaryContact</td>

@@ -3,6 +3,9 @@ package com.metacube.training.dao;
 import java.util.List;
 
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaUpdate;
+import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 
 import org.hibernate.Criteria;
@@ -13,6 +16,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.metacube.training.model.Employee;
 import com.metacube.training.model.Project;
 
 @Repository
@@ -90,23 +94,31 @@ public class ProjectDAOImplementation implements ProjectDAO {
         }
         return true;*/
     	Session session=null;
-    	try{
-    	session=sessionFactory.openSession();
-    	Transaction transaction=session.beginTransaction();
-    	
-    	transaction.commit();
-    	return true;
-    	}
-    	catch(Exception exception)
-    	{
-    		return false;
-    	}
-    	finally{
-    		if(session!=null)
-    		{
-    		session.close();
-    		}
-    	}
+		try{
+			session=sessionFactory.openSession();
+		CriteriaBuilder criteriaBuilder=session.getCriteriaBuilder();
+		CriteriaUpdate<Project> criteria=criteriaBuilder.createCriteriaUpdate(Project.class);
+		Root<Project> rootProject=criteria.from(Project.class);
+		criteria.set(rootProject.get("name"),project.getName());
+		criteria.set(rootProject.get("description"),project.getDescription());
+		criteria.set(rootProject.get("startDate"),project.getStartDate());
+		criteria.set(rootProject.get("endDate"),project.getEndDate());
+		criteria.where(criteriaBuilder.equal(rootProject.get("id"), project.getId()));
+		Transaction transaction=session.beginTransaction();
+		session.createQuery(criteria).executeUpdate();
+		transaction.commit();
+		return true;
+		}
+		catch(Exception exception)
+		{
+			return false;
+		}
+		 finally{
+				if(session!=null)
+				{
+					session.close();
+				}
+		 }
     }
 
     @Override
@@ -115,8 +127,31 @@ public class ProjectDAOImplementation implements ProjectDAO {
         if(updatedRows==0)
         {
             return false;
-        }*/
-        return true;
+        }
+        return true;*/
+        Session session=null;
+		try{
+			session=sessionFactory.openSession();
+		CriteriaBuilder criteriaBuilder=session.getCriteriaBuilder();
+		CriteriaUpdate<Project> criteria=criteriaBuilder.createCriteriaUpdate(Project.class);
+		Root<Project> rootProject=criteria.from(Project.class);
+		criteria.set(rootProject.get("isEnable"),false);
+		criteria.where(criteriaBuilder.equal(rootProject.get("id"), id));
+		Transaction transaction=session.beginTransaction();
+		session.createQuery(criteria).executeUpdate();
+		transaction.commit();
+		return true;
+		}
+		catch(Exception exception)
+		{
+			return false;
+		}
+		 finally{
+				if(session!=null)
+				{
+					session.close();
+				}
+		 }
     }
 
 }

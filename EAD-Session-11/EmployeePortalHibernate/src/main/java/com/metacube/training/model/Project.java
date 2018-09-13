@@ -48,8 +48,19 @@ public class Project {
 	
 	@Column(name="project_logo")
     private String projectLogo;
+	
+	@Column(name="is_enable")
+	private boolean isEnable;
 
-    public int getId() {
+    public boolean isEnable() {
+		return isEnable;
+	}
+
+	public void setEnable(boolean isEnable) {
+		this.isEnable = isEnable;
+	}
+
+	public int getId() {
         return id;
     }
 

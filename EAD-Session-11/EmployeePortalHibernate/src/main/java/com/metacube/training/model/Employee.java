@@ -48,16 +48,34 @@ public class Employee {
 	@Column(name="primary_contact")
 	private String primaryContact;
 	
+	@Column(name="password")
+	private String password;
+	
+	@Column(name="secondary_contact")
+	private String secondaryContact;
+	
+	public String getSecondaryContact() {
+		return secondaryContact;
+	}
+	public void setSecondaryContact(String secondaryContact) {
+		this.secondaryContact = secondaryContact;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	public String getPrimaryContact() {
 		return primaryContact;
 	}
 	public void setPrimaryContact(String primaryContact) {
 		this.primaryContact = primaryContact;
 	}
-	public boolean isEnable() {
+	public boolean getIsEnable() {
 		return isEnable;
 	}
-	public void setEnable(boolean isEnable) {
+	public void setIsEnable(boolean isEnable) {
 		this.isEnable = isEnable;
 	}
 	public int getId() {

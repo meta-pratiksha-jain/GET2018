@@ -3,6 +3,9 @@ package com.metacube.training.dao;
 import java.util.List;
 
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaUpdate;
+import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 
 import org.hibernate.Criteria;
@@ -78,6 +81,7 @@ public class EmployeeDAOImplementation implements EmployeeDAO{
         Criteria criteria=session.createCriteria(Employee.class);
         criteria.add(Restrictions.eq("email",email));
         criteria.add(Restrictions.eq("password",password));
+        criteria.add(Restrictions.eq("isEnable", true));
         return (Employee) criteria.uniqueResult();
 	}
 
@@ -97,8 +101,32 @@ public class EmployeeDAOImplementation implements EmployeeDAO{
 		if(updatedRows==0)
 		{
 			return false;
-		}*/
+		}
 		return true;
+		*/
+		Session session=null;
+		try{
+			session=sessionFactory.openSession();
+		CriteriaBuilder criteriaBuilder=session.getCriteriaBuilder();
+		CriteriaUpdate<Employee> criteria=criteriaBuilder.createCriteriaUpdate(Employee.class);
+		Root<Employee> rootEmployee=criteria.from(Employee.class);
+		criteria.set(rootEmployee.get("isEnable"),true);
+		criteria.where(criteriaBuilder.equal(rootEmployee.get("id"), id));
+		Transaction transaction=session.beginTransaction();
+		session.createQuery(criteria).executeUpdate();
+		transaction.commit();
+		return true;
+		}
+		catch(Exception exception)
+		{
+			return false;
+		}
+		 finally{
+				if(session!=null)
+				{
+					session.close();
+				}
+		 }
 	}
 
 	@Override
@@ -107,8 +135,71 @@ public class EmployeeDAOImplementation implements EmployeeDAO{
 		if(updatedRows==0)
 		{
 			return false;
-		}*/
-		return true;
+		}
+		return true;*/
+		Session session=null;
+		try{
+			session=sessionFactory.openSession();
+			CriteriaBuilder criteriaBuilder=session.getCriteriaBuilder();
+			CriteriaUpdate<Employee> criteria=criteriaBuilder.createCriteriaUpdate(Employee.class);
+			Root<Employee> rootEmployee=criteria.from(Employee.class);
+			criteria.set(rootEmployee.get("isEnable"),false);
+			criteria.where(criteriaBuilder.equal(rootEmployee.get("id"), id));
+			Transaction transaction=session.beginTransaction();
+			session.createQuery(criteria).executeUpdate();
+			transaction.commit();
+			return true;
+			}
+			catch(Exception exception)
+			{
+				return false;
+			}
+		 finally{
+				if(session!=null)
+				{
+					session.close();
+				}
+		 }
+	}
+
+	@Override
+	public Employee getEmployee(int id) {
+		Session session=sessionFactory.getCurrentSession();
+        Criteria criteria=session.createCriteria(Employee.class);
+        criteria.add(Restrictions.eq("id",id));
+        return (Employee) criteria.uniqueResult();
+	}
+
+	@Override
+	public boolean updateEmployee(Employee employee) {
+		Session session=null;
+		try{
+			session=sessionFactory.openSession();
+			CriteriaBuilder criteriaBuilder=session.getCriteriaBuilder();
+			CriteriaUpdate<Employee> criteria=criteriaBuilder.createCriteriaUpdate(Employee.class);
+			Root<Employee> rootEmployee=criteria.from(Employee.class);
+			criteria.set(rootEmployee.get("firstName"),employee.getFirstName());
+			criteria.set(rootEmployee.get("middleName"),employee.getMiddleName());
+			criteria.set(rootEmployee.get("lastName"),employee.getLastName());
+			criteria.set(rootEmployee.get("email"),employee.getEmail());
+			criteria.set(rootEmployee.get("gender"),employee.getGender());
+			criteria.set(rootEmployee.get("primaryContact"),employee.getPrimaryContact());
+			criteria.where(criteriaBuilder.equal(rootEmployee.get("id"), employee.getId()));
+			Transaction transaction=session.beginTransaction();
+			session.createQuery(criteria).executeUpdate();
+			transaction.commit();
+			return true;
+			}
+			catch(Exception exception)
+			{
+				return false;
+			}
+		    finally{
+			if(session!=null)
+			{
+				session.close();
+			}
+		}
 	}
 
 }

@@ -15,5 +15,9 @@ public interface EmployeeService {
 	public boolean enableEmployee(int id);
 	
 	public boolean disableEmployee(int id);
+	
+	public Employee getEmployee(int id);
+	
+	public boolean updateEmployee(Employee employee);
 
 }

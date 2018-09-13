@@ -159,6 +159,7 @@ public class AdminController {
     public ModelAndView employee(Model model)
     {
     	model.addAttribute("employees",employeeService.getAllEmployees());
+    	System.out.println(employeeService.getAllEmployees().get(0));
     	return new ModelAndView("admin/employees");
     }
     
