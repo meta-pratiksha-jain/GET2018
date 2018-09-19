@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.metacube.training.model.Employee;
 import com.metacube.training.model.Job;
+import com.metacube.training.model.JobDetails;
 import com.metacube.training.model.Project;
 import com.metacube.training.model.Skill;
 import com.metacube.training.service.EmployeeService;
@@ -165,16 +165,21 @@ public class AdminController {
     
     @RequestMapping(value = "employee/add", method = RequestMethod.GET)
     public ModelAndView addEmployee(Model model) {
-    	model.addAttribute(new Employee());
+    	model.addAttribute("employee",new Employee());
+    	model.addAttribute("jobTitles",jobService.getAllJobs());
+    	model.addAttribute("projects",projectService.getAllProjects());
         return new ModelAndView("admin/addEmployee");
     }
     
     @RequestMapping(value = "employee/add", method = RequestMethod.POST)
-    public String addEmployee(@ModelAttribute("employee") Employee employee) {
+    public String addEmployee(@ModelAttribute("employee") Employee employee,@ModelAttribute("jobDetails") JobDetails jobDetails) {
     	boolean isEmployeeAdded=false;
     	if(employee!=null)
     	{
     		isEmployeeAdded=employeeService.addEmployee(employee);
+    		Employee employeeAdded=employeeService.getEmployeeByEmail(employee.getEmail());
+    		jobDetails.setEmployeeId(employeeAdded.getId());
+    		employeeService.addJobDetails(jobDetails);
     	}
     	if(isEmployeeAdded)
     	{
@@ -198,6 +203,12 @@ public class AdminController {
     {
     	employeeService.disableEmployee(id);
     	return "redirect:/admin/employee";
+    }
+    
+    @GetMapping(value="/searchEmployee")
+    public ModelAndView searchEmployee()
+    {
+    	return new ModelAndView("searchEmployee");
     }
     
     @GetMapping(value="/logout")

@@ -15,7 +15,5 @@ public interface ProjectRepository<P> extends JpaRepository<Project,Integer> {
 	@Modifying
 	@Query("update Project set is_enable=false where id=?1")
 	public int deleteProject(int id);
-	
-	
 
 }

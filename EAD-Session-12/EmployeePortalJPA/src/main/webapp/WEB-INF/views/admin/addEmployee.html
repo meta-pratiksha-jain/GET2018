@@ -5,33 +5,57 @@
         <title>Add Employee</title>
     </head>
     <body>
-        <div>
-            <form th:object="${employee}" th:action="@{../employee/add}" method="post">
+    <form th:action="@{../employee/add}" method="post">
+        <div th:object="${employee}">
                 <input type="hidden"  th:field="*{id}" />
                 <br>
                 <label>First Name:</label> 
-                <input type="text" th:field="*{firstName}" /> 
+                <input type="text" th:field="*{firstName}" required/> 
                 <br>
                 <label>Middle Name:</label> 
                 <input type="text" th:field="*{middleName}" /> 
                 <br>
                 <label>Last Name:</label> 
-                <input type="text"  th:field="*{lastName}" /> 
+                <input type="text"  th:field="*{lastName}" required/> 
                 <br>
                 <label>Email:</label> 
-                <input type="email"  th:field="*{email}" /> 
+                <input type="email"  th:field="*{email}" required/> 
                 <br>
                 <label>Date Of Birth:</label> 
-                <input type="date" th:field="*{dateOfBirth}" />
+                <input type="date" th:field="*{dateOfBirth}" required/>
                 <br>
                 <label>Primary Contact Number:</label> 
-                <input type="text" th:field="*{primaryContact}" />
+                <input type="text" th:field="*{primaryContact}" required/>
                 <br>
                 <label>Gender</label> 
                 <input type="radio" th:field="*{gender}" th:value="Male" />Male
                 <input type="radio" th:field="*{gender}" th:value="Female" />Female
-                <button type="submit" class="btn btn-primary">Save</button>
-            </form>
         </div>
+        <div th:object="${jobDetails}">
+			<table>
+				<tr>
+					<td>Date of Joining:</td>
+					<td><input type="date" name="dateOfJoining" required /></td>
+				</tr>
+				<tr>
+					<td>Experience in years:</td>
+					<td><input type="number" name="experience" required /></td>
+				</tr>
+				<tr>
+					<td>JobDesignation</td>
+					<td><select name="jobTitle"><option
+								th:each="jobTitle: ${jobTitles}" th:value="${jobTitle.title}">[[${jobTitle.title}]]</option>
+					</select></td>
+				</tr>
+				<tr>
+					<td>Project Name</td>
+					<td><select name="projectName"><option
+								th:each="project: ${projects}" th:value="${project.name}">[[${project.name}]]</option>
+					</select></td>
+				</tr>
+			</table>
+		</div>
+		<input name="submit" type="submit" value="submit"/>
+	</form>
     </body>
 </html>

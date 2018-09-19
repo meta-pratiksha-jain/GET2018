@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form th:action="@{../searchEmployee}" method="POST">
+		<div th:if="${param.error}" >    
+    		Invalid Data
+		</div>
+			<input name="type" type="radio" value="name" checked/>By Name
+			<br />
+			<input name="type" type="radio" value="project" />By Project
+			<br />
+			<input name="inputValue" type="text" required />
+			<br />
+		<input name="submit" type="submit" value="Search" required />
+	</form>
+</body>
+</html>

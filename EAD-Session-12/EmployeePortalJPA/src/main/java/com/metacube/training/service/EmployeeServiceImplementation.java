@@ -1,5 +1,6 @@
 package com.metacube.training.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,13 +8,28 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.metacube.training.model.Employee;
+import com.metacube.training.model.JobDetails;
+import com.metacube.training.model.Project;
+import com.metacube.training.model.Skill;
 import com.metacube.training.repository.EmployeeRepository;
+import com.metacube.training.repository.JobDeatilsRepository;
+import com.metacube.training.repository.JobRepository;
+import com.metacube.training.repository.ProjectRepository;
+import com.metacube.training.repository.SkillRepository;
 
 @Service
 public class EmployeeServiceImplementation implements EmployeeService{
 	@Autowired
 	EmployeeRepository<Employee> employeeRepository;
-	//EmployeeDAO employeeDAO;
+	
+	@Autowired
+	SkillRepository<Skill> skillRepository;
+	
+	@Autowired
+	ProjectRepository<Project> projectRepository;
+	
+	@Autowired
+	JobDeatilsRepository jobDetailsRepository;
 
 	@Override
 	@Transactional
@@ -68,6 +84,48 @@ public class EmployeeServiceImplementation implements EmployeeService{
 				return false;
 			}
 			return true;
+	}
+	
+	@Override
+	@Transactional
+	public List<Employee> searchEmployee(String type, String inputValue) {
+		List<Employee> listOfEmployee=new ArrayList<Employee>();
+	    switch(type)
+	    {
+	    case "name":
+	    	listOfEmployee=employeeRepository.findEmployeeByFirstNameContainingIgnoreCase(inputValue);
+	    	break;
+	    case "project":
+	    	List<JobDetails> listOfEmployeeJobDetails=jobDetailsRepository.findJobDetailsByProjectNameContainingIgnoreCase(inputValue);
+	    	for(JobDetails employeeJobDetails:listOfEmployeeJobDetails)
+	    	{
+	    		int employeeId=employeeJobDetails.getEmployeeId();
+	    		Employee employee=employeeRepository.findOne(employeeId);
+	    		listOfEmployee.add(employee);
+	    	}
+	    	break;
+	    default:
+	    	return null;
+	    }
+		return listOfEmployee;
+	}
+
+	@Override
+	@Transactional
+	public Employee getEmployeeByEmail(String email) {
+		Employee employee=employeeRepository.findEmployeeByEmail(email);
+		return employee;
+	}
+	
+	@Override
+	@Transactional
+	public void addJobDetails(JobDetails jobDetails) {
+		try{
+			jobDetailsRepository.save(jobDetails);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 
 }

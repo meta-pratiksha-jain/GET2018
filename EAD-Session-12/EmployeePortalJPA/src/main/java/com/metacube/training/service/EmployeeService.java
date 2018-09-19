@@ -3,6 +3,7 @@ package com.metacube.training.service;
 import java.util.List;
 
 import com.metacube.training.model.Employee;
+import com.metacube.training.model.JobDetails;
 
 public interface EmployeeService {
 	
@@ -19,5 +20,11 @@ public interface EmployeeService {
 	public Employee getEmployee(int id);
 	
 	public boolean updateEmployee(Employee employee);
+	
+	public List<Employee> searchEmployee(String type,String inputValue);
+	
+	public Employee getEmployeeByEmail(String email);
+	
+	public void addJobDetails(JobDetails jobDetails);
 
 }

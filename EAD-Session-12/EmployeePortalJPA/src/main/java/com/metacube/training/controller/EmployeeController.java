@@ -62,6 +62,12 @@ public class EmployeeController {
 	    	}
 	    }
 	    
+	    @GetMapping(value="/searchEmployee")
+	    public ModelAndView searchEmployee()
+	    {
+	    	return new ModelAndView("searchEmployee");
+	    }
+	    
 	    @GetMapping(value="/logout")
 	    public String logout()
 	    {
