@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang=en>
+<meta charset="ISO-8859-1">
+<title>Profile</title>
+</head>
+<body>
+<div>
+		<p>
+			<a th:href="${'edit?id=' + employee.id}">EditProfile |</a> 
+			<a href="searchEmployee">SearchEmployee |</a> 
+			<a href="logout">LogOut</a>
+		</p>
+	</div>
+	<div>
+		<h1>My Profile</h1>
+		<table>
+			<tr><td>Id</td>
+			<td th:text="${employee.id}"></td>
+			</tr>
+			<tr>
+				<td>First Name:</td>
+				<td th:text="${employee.firstName}">firstName</td>
+				</tr>
+				<tr>
+				<td>Middle Name:</td>
+				<td th:text="${employee.middleName}">middleName</td>
+				</tr>
+				<tr>
+				<td>Last Name:</td>
+				<td th:text="${employee.lastName}">lastName</td>
+			</tr>
+			<tr>
+				<td>Date Of Birth:</td>
+				<td th:text="${employee.dateOfBirth}">dateOfBirth</td>
+			</tr>
+			<tr>
+				<td>Gender:</td>
+				<td th:text="${employee.gender}">gender</td>
+			</tr>
+			<tr>
+				<td>Email:</td>
+				<td th:text="${employee.email}">email</td>
+			</tr>
+			<tr>
+				<td>Primary Contact</td>
+				<td th:text="${employee.primaryContact}">primary</td>
+			</tr>
+			<tr>
+				<td>Secondary Contact:</td>
+				<td th:text="${employee.secondaryContact}">secondary</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>
