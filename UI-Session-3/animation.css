@@ -1,0 +1,46 @@
+#outer{
+    display: flex;
+    width: 200px;
+    height: 200px;
+    flex-wrap: wrap;
+	text-align: center;
+    animation-direction: reverse;
+    transform: translate(350%,140%);
+}
+
+#red{
+    background-color: #FA5667;
+    animation-delay: -0s;
+}
+
+#purple{
+    background-color: #7A45E5;
+    animation-delay: -0.5s;
+}
+
+#blue{
+    background-color: #1B91F7;
+    animation-delay: -1s;
+}
+
+#yellow{
+    background-color: #FAC24C;
+    animation-delay: -1.5s;
+}
+
+.inner{
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    animation-name: rotation;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes rotation{
+    0% {left:0px; top: 0px;}
+    25% {left:0px; top: 100px;}
+    50% {left:100px; top: 100px;}
+    75% {left:100px; top: 0px;}
+    100% {left: 0px; top: 0px;}
+}
