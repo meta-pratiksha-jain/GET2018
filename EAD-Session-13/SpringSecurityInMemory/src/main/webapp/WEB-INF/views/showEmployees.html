@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Show Employees</title>
+</head>
+<body>
+<div class="container" align="center">
+	
+		<div th:if="${not #lists.isEmpty(employees)}">
+			<h2>Employees</h2>
+			<table >
+				<tr>
+                        <th>First Name</th>
+                        <th>Middle Name</th>
+                        <th>Last Name</th>
+                        <th>Date Of Birth</th>
+                        <th>Gender</th>
+                        <th>Email</th>
+                    </tr>
+                    <tr th:each="employee : ${employees}">
+                        <td th:text="${employee.firstName}">First Name</td>
+                        <td th:text="${employee.middleName}">Middle Name</td>
+                        <td th:text="${employee.lastName}">Last Name</td>
+                        <td th:text="${employee.dateOfBirth}">Date Of Birth</td>
+                        <td th:text="${employee.gender}">Gender</td>
+                        <td th:text="${employee.email}">Email</td>
+                    </tr>
+			</table>
+		</div>
+		<div th:if="${#lists.isEmpty(employees)}">
+			<h2>Employee Not Found!!!</h2>
+		</div>
+	</div>
+</body>
+</html>
