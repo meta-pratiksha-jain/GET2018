@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Form</title>
+        <link rel=stylesheet href="form.css"/>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    </head>
+    
+    <body>
+            <h1>Contact Us Today!</h1>
+            <form>
+                <div class="input_field">
+                    <label>First Name</label>
+                    <i class="fas fa-user"></i>
+                    <input type="text" placeholder="First Name" required pattern="^([a-zA-Z]){2,50}$"/>
+                </div>
+                <div class="input_field">
+                    <label>Last Name</label>
+                    <i class="fas fa-user"></i>
+                    <input type=text placeholder="Last Name" required pattern="^([a-zA-Z]){2,50}$"/>
+                </div>
+                <div class="input_field">
+                    <label>E-mail</label>
+                    <i class="fas fa-envelope"></i>
+                    <input type=email placeholder="Email-Address" required pattern="^([a-zA-Z])([a-zA-Z0-9_.-])*@([a-zA-Z])+\.([a-zA-Z])+([a-zA-Z])+$"/>
+                </div>
+                <div class="input_field">
+                    <label>Phone No.</label>
+                    <i class="fas fa-phone"></i>
+                    <input type=tel placeholder="845531212" required pattern="^([0-9]){8,15}$"/>
+                </div>
+                <div class="input_field">
+                    <label>Address</label>
+                    <i class="fas fa-home"></i>
+                    <input type=text placeholder="Address" required maxlength="200"/>
+                </div>
+                <div class="input_field">
+                    <label>City</label>
+                    <i class="fas fa-home"></i>
+                    <input type=text placeholder="City" required pattern="^([a-zA-Z]){2,20}$"/>
+                </div>
+                <div class="input_field">
+                    <label>State</label>
+                    <i class="fas fa-list"></i>
+                    <select >
+                        <option selected disabled>Please Select Your State</option>
+                        <option>Rajasthan</option>
+                        <option>Madhya Pradesh</option>
+                        <option>Gujarat</option>
+                        <option>Panjab</option>
+                        <option>Haryana</option>
+                    </select>
+                </div>
+                <div class="input_field">
+                    <label>Zipcode</label>
+                    <i class="fas fa-home"></i>
+                    <input type=text placeholder="Zipcode" required pattern="^([0-9]){3,6}$"/>
+                </div>
+                <div class="input_field">
+                    <label>Website or domain name</label>
+                    <i class="fas fa-globe-americas"></i>
+                    <input type=url placeholder="Website or domain name" required/>
+                </div>
+                <div class="input_field">
+                    <label>Do you have hosting</label>
+                    <div>
+                        <input type="radio" name="hosting"/>Yes
+                        <br/>
+                        <input type="radio" name="hosting"/>No
+                    </div>
+                </div>
+                <div class="input_field">
+                    <label>Project Description</label>
+                    <i class="fas fa-pen"></i>
+                    <textarea rows="2" placeholder="Project Description" required>
+                    </textarea>
+                </div>
+                <div>
+                    <button type="submit" id=send_button>
+                        Send
+                        <i class="fas fa-location-arrow"></i>
+                    </button>
+                </div>
+            </form>
+        
+    </body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <canvas id="circle" width="200" height="200">
+		    Your browser doesn't support canvas element.
+        </canvas>
+
+        <script>
+            var canvas_circle=document.getElementById("circle");
+            var ctx=canvas_circle.getContext("2d");
+            ctx.beginPath();
+            ctx.arc(100,100,90,0,2*Math.PI);
+            ctx.fillStyle="#FCB03C";
+            ctx.fill();
+            ctx.moveTo(25,100);
+            ctx.lineTo(175,100);
+            ctx.lineWidth=20;
+            ctx.strokeStyle="#FFFFFF";
+            ctx.stroke();
+            ctx.moveTo(100,25);
+            ctx.lineTo(100,175);
+            ctx.lineWidth=20;
+            ctx.strokeStyle="#FFFFFF";
+            ctx.stroke();
+        </script>
+    </body>
+</html>
