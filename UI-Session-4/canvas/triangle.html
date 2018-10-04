@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <canvas id="triangle" width="200" height="200">
+		    Your browser doesn't support canvas element.
+        </canvas>
+
+        <script>
+            var canvas_triangle=document.getElementById("triangle");
+            var ctx=canvas_triangle.getContext("2d");
+            ctx.moveTo(10,190);
+            ctx.lineTo(100,10);
+            ctx.lineTo(190,190);
+            ctx.lineTo(10,190);
+            ctx.closePath();
+            ctx.fillStyle="#982068";
+            ctx.fill();
+        </script>
+    </body>
+</html>

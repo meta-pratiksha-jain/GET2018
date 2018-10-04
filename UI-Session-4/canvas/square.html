@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <canvas id="square" width="200" height="200">
+		    Your browser doesn't support canvas element.
+        </canvas>
+
+        <script>
+            var canvas_square=document.getElementById("square");
+            var ctx=canvas_square.getContext("2d");
+            ctx.rect(10,10,180,180)
+            ctx.fillStyle="#166432";
+            ctx.fill();
+        </script>
+    </body>
+</html>

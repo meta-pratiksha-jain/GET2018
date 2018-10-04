@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200">
+    <circle id="circular_shape" cx="100" cy="100" r="100" fill="#FCB03C"/>
+    <rect x="10" y="85" width="180" height="30" fill="#FFFFFF"/>
+    <rect x="85" y="10" width="30" height="180" fill="#FFFFFF"/>
+</svg>

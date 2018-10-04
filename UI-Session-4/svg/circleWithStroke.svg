@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="200px" height="200px">
+    <circle id="circular_shape" cx="100px" cy="100px" r="90px" stroke="#982068" stroke-width="20px" fill="white"/>
+</svg>
