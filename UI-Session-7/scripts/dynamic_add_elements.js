@@ -101,24 +101,25 @@ function addHosting()
     hostingLabel.appendChild(document.createTextNode("Do you have hosting"));
     hosting.appendChild(hostingLabel);
     
+    var inputDiv=document.createElement("div");
+    inputDiv.setAttribute("class","hosting_radio_field");
     var labelNo=document.createElement("label");
     var inputField= document.createElement("input");
     inputField.setAttribute("type", "radio");
     inputField.setAttribute("value","no");
     inputField.setAttribute("name","hosting");
-//    inputField.id="hosting";
     labelNo.appendChild(inputField); 
     labelNo.appendChild(document.createTextNode("No"))
-    hosting.appendChild(labelNo);
-    
+    inputDiv.appendChild(labelNo);
+
     var labelYes=document.createElement("label");
     inputField= document.createElement("input");
     inputField.setAttribute("type", "radio");
     inputField.setAttribute("value","yes");
     inputField.setAttribute("name","hosting");
-//    inputField.id="hosting";
     labelYes.appendChild(inputField); 
-    labelYes.appendChild(document.createTextNode("yes"))
-    hosting.appendChild(labelYes);
+    labelYes.appendChild(document.createTextNode("Yes"))
+    inputDiv.appendChild(labelYes);
+    hosting.append(inputDiv);
     document.getElementById("form").appendChild(hosting);
 }

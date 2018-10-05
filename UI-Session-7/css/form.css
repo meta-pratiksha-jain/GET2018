@@ -47,8 +47,14 @@ select {
     width: 182px;
 }
 
-input[type="radio"] {
-    margin: 4px 0px;
+.hosting_radio_field{
+    display: flex;
+    flex-direction: column;
+}
+
+.hosting_radio_field label{
+    margin: 0px;
+    text-align: left;
 }
 
 textArea {
