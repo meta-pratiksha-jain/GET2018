@@ -1,0 +1,33 @@
+body {
+    background-color: #EAEAEA
+}
+
+h1 {
+    margin: 20px;
+}
+
+#user_data_div {
+    width: 600px;
+    padding-top: 20px;
+    margin: auto;
+}
+
+#user_data_div div {
+    margin: 10px;
+    display: flex;
+}
+
+.info_label {
+    width: 180px;
+    text-align: right;
+    margin: 0px 15px;
+    padding: 10px 5px;
+}
+
+.info_value {
+    width: 200px;
+    text-align: left;
+    margin: 0px 15px;
+    padding: 10px 5px;
+    background-color: white;
+}
