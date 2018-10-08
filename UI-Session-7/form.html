@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Form</title>
+        <link rel=stylesheet href="css/form.css"/>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+        <script src="scripts/form_validations.js"></script>
+        <script src="scripts/dynamic_add_elements.js"></script>
+    </head>
+    
+    <body>
+            <h1>Contact Us Today!</h1>
+            <form action="userProfile.html">
+                <div id="form">
+                <div class="input_field">
+                    <label>First Name</label>
+                    <i class="fas fa-user"></i>
+                    <input id="firstName" type="text" placeholder="First Name" required/>
+                </div>
+                <div class="input_field">
+                    <label>Last Name</label>
+                    <i class="fas fa-user"></i>
+                    <input id="lastName" type=text placeholder="Last Name" required/>
+                </div>
+                <div class="input_field">
+                    <label>E-mail</label>
+                    <i class="fas fa-envelope"></i>
+                    <input id="email" type=text placeholder="Email-Address" required/>
+                </div>
+                <div class="input_field">
+                    <label>Phone No.</label>
+                    <i class="fas fa-phone"></i>
+                    <input id="contact" type=text placeholder="845531212"/>
+                </div>
+                <div class="input_field">
+                    <label>Address</label>
+                    <i class="fas fa-home"></i>
+                    <input id="address" type=text placeholder="Address"/>
+                </div>
+                <div class="input_field">
+                    <label>City</label>
+                    <i class="fas fa-home"></i>
+                    <input id="city" type=text placeholder="City"/>
+                </div>
+                <div class="input_field">
+                    <label>State</label>
+                    <i class="fas fa-list"></i>
+                    <select id="state" required onchange="stateFunction()">
+                        <option value="" selected disabled>Please Select Your State</option>
+                        <option value="rajasthan">Rajasthan</option>
+                        <option value="haryana">Haryana</option>
+                        <option value="maharashtra">Maharashtra</option>
+                    </select>
+                </div>
+                </div>
+                <div>
+                    <button type="submit" id="send_button" onclick="return submitForm()">
+                        Send
+                        <i class="fas fa-location-arrow"></i>
+                    </button>
+                </div>
+            </form>
+        
+    </body>
+</html>
