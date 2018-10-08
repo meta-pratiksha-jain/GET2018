@@ -20,7 +20,13 @@ function removeConsecutiveCharacters(inputString) {
         if (currentConsecutiveCharacterPosition > i) {
             //removes consecutive repeating character substring if exists
             inputString = inputString.replace(stringToBeReplaced, "");
-            i--;
+            if(i==0){
+                i--;
+            }
+            else{
+                //if substring is not removed from start position of string then repeatation is checked from one position before from current position.
+                i=i-2;
+            }
         }
     }
     return inputString;
