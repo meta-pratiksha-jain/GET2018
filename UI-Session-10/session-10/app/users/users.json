@@ -1,0 +1,46 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Akshat",
+      "contact": "7788994455",
+      "address": "dcdds"
+    },
+    {
+      "id": 2,
+      "name": "Shubham",
+      "contact": "7788994455",
+      "address": "Mumbai"
+    },
+    {
+      "id": 3,
+      "name": "Rahul",
+      "contact": "7788994455",
+      "address": "Delhi"
+    },
+    {
+      "id": 4,
+      "name": "Nitesh",
+      "contact": "7788994455",
+      "address": "Jaipur"
+    },
+    {
+      "id": 5,
+      "name": "Joy",
+      "contact": "7788994455",
+      "address": "Ahemdabad"
+    },
+    {
+      "id": 6,
+      "name": "Jaya",
+      "contact": "7788994455",
+      "address": "Kolkata"
+    },
+    {
+      "name": "Pratiksha Jain",
+      "contact": "253238294",
+      "address": "fdggds",
+      "id": 9
+    }
+  ]
+}
