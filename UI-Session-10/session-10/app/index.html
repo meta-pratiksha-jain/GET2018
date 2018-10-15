@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en" ng-app="UserManagement">
+    <head>
+        <meta charset="utf-8">
+        <title>User Management</title>
+        <link rel="stylesheet" href="index.css" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <script src="app.module.js"></script>
+        <script src="user-list/user-list.module.js"></script>
+        <script src="user-list/user-list.component.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+        <div class="container border">
+            <header id="header_section" class="border border-primary mx-0">
+                <h1 class="text-center py-1">User Management</h1>
+            </header>
+            <section>
+                <div class="clearfix pt-5">
+                    <h3 class="float-left">Users</h3>
+                    <button type="button" class="btn float-right py-0 mt-1 mr-5 " data-toggle="modal" data-target="#userModel" ng-click="resetUser()">Add User</button>
+                </div>
+            </section>        
+            <user-list></user-list>
+        </div>
+    </body>
+</html>
