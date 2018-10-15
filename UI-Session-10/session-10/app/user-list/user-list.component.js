@@ -37,7 +37,7 @@ component('userList', {
         $scope.resetUser = function(){
             $scope.user.id = null;  
             $scope.user.name = null;
-            $scope.user.city = null;
+            $scope.user.address = null;
             $scope.user.contact = null;
         }
     }
