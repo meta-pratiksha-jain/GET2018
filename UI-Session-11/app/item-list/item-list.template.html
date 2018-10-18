@@ -1,12 +1,12 @@
 <div class="row">
-    <div class="col-3 list-group">
+    <aside class="col-3 list-group">
         <button ng-click="searchItem=all" class="list-group-item list-group-item-action" autofocus>All Categories</button>
         <button ng-click="searchItem={category:'Bread'}" class="list-group-item list-group-item-action">Bread</button>
         <button ng-click="searchItem={category:'Dairy'}" class="list-group-item list-group-item-action">Dairy</button>
         <button ng-click="searchItem={category:'Fruits'}" class="list-group-item list-group-item-action">Fruits</button>
         <button ng-click="searchItem={category:'Seasoning and Spices'}" class="list-group-item list-group-item-action">Seasoning and Spices</button>
         <button ng-click="searchItem={category:'vegetables'}" class="list-group-item list-group-item-action">Vegetables</button>
-    </div>
+    </aside>
     <div class="col-md-9">
         <div class="row">
     <div class="col-6" ng-repeat="item in $ctrl.items| filter:searchItem">

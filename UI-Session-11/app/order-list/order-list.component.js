@@ -6,7 +6,6 @@ angular.module('orderList').
 
             $http.get('http://localhost:3000/orders').then(function(response){
                 self.orders = response.data;
-                console.log(self.orders[0].userId);
             });
 
             $scope.getOrder=function(orderId){
@@ -16,7 +15,7 @@ angular.module('orderList').
                     var item;
                     self.totalOrderPrice=0;
                     for(item in self.items){
-                        self.totalOrderPrice += self.items[item].price;  
+                        self.totalOrderPrice += self.items[item].totalPrice;  
                     }
                 });
             }

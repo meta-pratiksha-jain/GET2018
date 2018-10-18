@@ -22,7 +22,7 @@
             </div>
             <div class="modal-body mx-3">
                 <div class="row d-flex justify-content-between border-bottom" ng-repeat="item in $ctrl.items">
-                    <div class="col-md-3"><p>{{item.count}} x {{item.title}}</p></div>
+                    <div class="col-md-3"><p>{{item.quantity}} x {{item.item.title}}</p></div>
                     <div class="col-md-2"><p>${{item.totalPrice}}</p></div>
                 </div>
                 <div class="row d-flex justify-content-between">

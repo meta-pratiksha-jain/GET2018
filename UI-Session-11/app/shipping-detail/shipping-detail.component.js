@@ -2,6 +2,7 @@ angular.module('shippingDetail').
     component('shippingDetail',{
         templateUrl:"shipping-detail/shipping-detail.template.html",
         controller:function ShippingDetailController($http,$scope,$rootScope){
+            $scope.cartItemCount=$rootScope.cartCount;
 
             var self = this;
             $http.get('http://localhost:3000/cart').then(function(response){
@@ -13,6 +14,7 @@ angular.module('shippingDetail').
                 }
             });
 
+            
 //            $http.get('http://localhost:3000/shipping').then(function(response){
 //                self.shipping = response.data;
 //            });
@@ -38,7 +40,6 @@ angular.module('shippingDetail').
                 var yyyy = today.getFullYear();
 
                 today = mm + '/' + dd + '/' + yyyy;
-
 
                 var orderData={
                     "items":self.items,
