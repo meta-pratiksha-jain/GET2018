@@ -1,0 +1,1 @@
+angular.module('ShoppingApp',['ngRoute','itemList','cartDetail','shippingDetail','orderSuccess','orderList']);

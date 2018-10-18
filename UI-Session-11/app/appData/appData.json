@@ -1,0 +1,114 @@
+{
+  "items": [
+    {
+      "id": 1,
+      "title": "Spinach",
+      "price": 2.5,
+      "imageUrl": "img/spinach.jpg",
+      "category": "Vegetables"
+    },
+    {
+      "id": 2,
+      "title": "Freshly Baked Bread",
+      "price": 3.5,
+      "imageUrl": "img/bread.jpg",
+      "category": "Bread"
+    },
+    {
+      "id": 3,
+      "title": "Saffron",
+      "price": 4.5,
+      "imageUrl": "img/saffron.jpg",
+      "category": "Seasoning and Spices"
+    },
+    {
+      "id": 4,
+      "title": "Mango",
+      "price": 3,
+      "imageUrl": "img/mango.jpg",
+      "category": "Fruits"
+    },
+    {
+      "id": 5,
+      "title": "Butter",
+      "price": 5.5,
+      "imageUrl": "img/butter.jpg",
+      "category": "Dairy"
+    }
+  ],
+  "cart": [],
+  "shipping": [
+    {
+      "name": "John",
+      "id": 1
+    },
+    {
+      "name": "John",
+      "id": 2
+    }
+  ],
+  "orders": [
+    {
+      "items": [
+        {
+          "id": 1,
+          "item": {
+            "id": 1,
+            "title": "Spinach",
+            "price": 2.5,
+            "imageUrl": "img/spinach.jpg",
+            "category": "Vegetables"
+          },
+          "totalPrice": 5,
+          "quantity": 2
+        },
+        {
+          "id": 2,
+          "item": {
+            "id": 2,
+            "title": "Freshly Baked Bread",
+            "price": 3.5,
+            "imageUrl": "img/bread.jpg",
+            "category": "Bread"
+          },
+          "totalPrice": 3.5,
+          "quantity": 1
+        }
+      ],
+      "userName": "John",
+      "date": "10/18/2018",
+      "id": 1
+    },
+    {
+      "items": [
+        {
+          "id": 1,
+          "item": {
+            "id": 1,
+            "title": "Spinach",
+            "price": 2.5,
+            "imageUrl": "img/spinach.jpg",
+            "category": "Vegetables"
+          },
+          "totalPrice": 5,
+          "quantity": 2
+        },
+        {
+          "id": 2,
+          "item": {
+            "id": 2,
+            "title": "Freshly Baked Bread",
+            "price": 3.5,
+            "imageUrl": "img/bread.jpg",
+            "category": "Bread"
+          },
+          "totalPrice": 3.5,
+          "quantity": 1
+        }
+      ],
+      "userName": "John",
+      "date": "10/18/2018",
+      "id": 2
+    }
+  ]
+}
